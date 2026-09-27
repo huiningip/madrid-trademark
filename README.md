@@ -1,4 +1,4 @@
-<sub>🌐 <b>中文</b> · <a href="README.en.md">English</a></sub>
+<sub>🌐 <b>中文</b> · <a href="README.zh-Hant.md">繁體中文</a> · <a href="README.en.md">English</a> · <a href="README.fr.md">Français</a> · <a href="README.es.md">Español</a> · <a href="README.ar.md">العربية</a> · <a href="README.ja.md">日本語</a> · <a href="README.ru.md">Русский</a></sub>
 
 <div align="center">
 
@@ -262,8 +262,14 @@ py -B wipo_lex_fetch.py --url https://www.wipo.int/wipolex/en/text/384637 --insp
 ```
 madrid-trademark/
 ├── SKILL.md                          # 主文档（给 agent 读，六段式：角色/任务/上下文/流程/规则/输出格式）
-├── README.md                         # 中文 README（本文件）
-├── README.en.md                      # 英文 README
+├── README.md                         # 简体中文（本文件 · 默认）
+├── README.zh-Hant.md                 # 繁體中文
+├── README.en.md                      # English
+├── README.fr.md                      # Français
+├── README.es.md                      # Español
+├── README.ar.md                      # العربية（RTL）
+├── README.ja.md                      # 日本語
+├── README.ru.md                      # Русский
 ├── LICENSE                           # MIT 许可证
 ├── logo.png                          # 品牌标识（README 首屏）
 ├── references/                       # 15 份：13 Markdown + 2 官方 PDF
@@ -313,7 +319,7 @@ madrid-trademark/
 
 版权归 **辉宁知识产权** 所有。
 
-**授权范围说明**：MIT 协议覆盖本技能自身的代码（`scripts/`）与文档（`SKILL.md`、两版 README、`references/` 中的技能整理内容、`templates/`）。`references/` 下按原文收录的 WIPO Lex 官方条约文本及两份 WIPO/CNIPA 官方 PDF，权利仍属原发布机构，随附仅为便于核验，**不受本协议覆盖**——使用时请遵守来源方的使用条款。
+**授权范围说明**：MIT 协议覆盖本技能自身的代码（`scripts/`）与文档（`SKILL.md`、八语 README、`references/` 中的技能整理内容、`templates/`）。`references/` 下按原文收录的 WIPO Lex 官方条约文本及两份 WIPO/CNIPA 官方 PDF，权利仍属原发布机构，随附仅为便于核验，**不受本协议覆盖**——使用时请遵守来源方的使用条款。
 
 使用本技能产出的任何结论，落地前请结合指定缔约方国内法与个案事实复核；因其为实务辅助工具，不构成法律意见。
 

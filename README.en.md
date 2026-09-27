@@ -1,4 +1,4 @@
-<sub>🌐 <a href="README.md">中文</a> · <b>English</b></sub>
+<sub>🌐 <a href="README.md">简体中文</a> · <a href="README.zh-Hant.md">繁體中文</a> · <b>English</b> · <a href="README.fr.md">Français</a> · <a href="README.es.md">Español</a> · <a href="README.ar.md">العربية</a> · <a href="README.ja.md">日本語</a> · <a href="README.ru.md">Русский</a></sub>
 
 <div align="center">
 
@@ -263,8 +263,14 @@ Being straight about what it does not do:
 ```
 madrid-trademark/
 ├── SKILL.md                          # Main document (read by the agent; six-part structure: role / task / context / process / rules / output format)
-├── README.md                         # Chinese README (default)
-├── README.en.md                      # English README (this file)
+├── README.md                         # Simplified Chinese (default)
+├── README.zh-Hant.md                 # Traditional Chinese
+├── README.en.md                      # English (this file)
+├── README.fr.md                      # French
+├── README.es.md                      # Spanish
+├── README.ar.md                      # Arabic (RTL)
+├── README.ja.md                      # Japanese
+├── README.ru.md                      # Russian
 ├── LICENSE                           # MIT License
 ├── logo.png                          # Brand mark (README header)
 ├── references/                       # 15 items: 13 Markdown + 2 official PDFs
@@ -314,7 +320,7 @@ Released under the **MIT License** ([LICENSE](LICENSE)). You are free to **use, 
 
 Copyright **Hui Ning IP (辉宁知识产权)**.
 
-**Scope note.** The MIT licence covers this skill's own code (`scripts/`) and documentation (`SKILL.md`, the two READMEs, the skill-compiled material in `references/`, and `templates/`). The WIPO Lex official treaty texts reproduced verbatim under `references/`, and the two official WIPO/CNIPA PDFs, remain the property of their issuing bodies; they are bundled for verification convenience and are **not covered by this licence** — observe the source terms when using them.
+**Scope note.** The MIT licence covers this skill's own code (`scripts/`) and documentation (`SKILL.md`, the READMEs in eight languages, the skill-compiled material in `references/`, and `templates/`). The WIPO Lex official treaty texts reproduced verbatim under `references/`, and the two official WIPO/CNIPA PDFs, remain the property of their issuing bodies; they are bundled for verification convenience and are **not covered by this licence** — observe the source terms when using them.
 
 Any conclusion produced with this skill should be reviewed against the designated party's national law and the facts of the case before it is relied upon; as a practice aid, it does not constitute legal advice.
 
