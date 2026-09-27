@@ -2,11 +2,14 @@
 
 <div align="center">
 
+<img src="logo.png" alt="辉宁知识产权 Hui Ning IP" width="150">
+
 # Madrid Trademark · 马德里商标国际注册
 
 > *「一句话问清程序，拿回一份能直接用的实务方案。」*
 > *"Ask once. Get a filing-ready Madrid practice answer."*
 
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-3.4.5-blue.svg)](https://github.com/huiningip/madrid-trademark)
 [![Agent-Agnostic](https://img.shields.io/badge/Agent-Agnostic-blueviolet)](#装上就能用)
 [![Madrid Members](https://img.shields.io/badge/Madrid%20Members-117%20%C2%B7%20133%20countries-green)](https://www.wipo.int/en/web/madrid-system/members/)
@@ -261,6 +264,8 @@ madrid-trademark/
 ├── SKILL.md                          # 主文档（给 agent 读，六段式：角色/任务/上下文/流程/规则/输出格式）
 ├── README.md                         # 中文 README（本文件）
 ├── README.en.md                      # 英文 README
+├── LICENSE                           # MIT 许可证
+├── logo.png                          # 品牌标识（README 首屏）
 ├── references/                       # 15 份：13 Markdown + 2 官方 PDF
 │   ├── madrid-agreement.md / -en.md           # 马德里协定（18 条，中英全文）
 │   ├── madrid-protocol.md / -en.md            # 马德里议定书（16 条 + 10 分条，中英全文）
@@ -304,7 +309,11 @@ madrid-trademark/
 
 ## License
 
-本技能版权归 **辉宁知识产权** 所有。当前未附开源许可文件，默认**保留所有权利**；如需开源，请在上传前补一份 `LICENSE`（例如 MIT）并同步更新上方徽章与本节。
+本项目采用 **MIT 协议**（[LICENSE](LICENSE)）。你可以**自由使用、修改、分发**，**包括商业用途**——公司内部使用、客户案卷交付、二次开发与再分发，均无需事先授权、无需付费、无需打招呼。注明出处不强制，但欢迎。
+
+版权归 **辉宁知识产权** 所有。
+
+**授权范围说明**：MIT 协议覆盖本技能自身的代码（`scripts/`）与文档（`SKILL.md`、两版 README、`references/` 中的技能整理内容、`templates/`）。`references/` 下按原文收录的 WIPO Lex 官方条约文本及两份 WIPO/CNIPA 官方 PDF，权利仍属原发布机构，随附仅为便于核验，**不受本协议覆盖**——使用时请遵守来源方的使用条款。
 
 使用本技能产出的任何结论，落地前请结合指定缔约方国内法与个案事实复核；因其为实务辅助工具，不构成法律意见。
 

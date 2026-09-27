@@ -2,11 +2,14 @@
 
 <div align="center">
 
+<img src="logo.png" alt="Hui Ning IP" width="150">
+
 # Madrid Trademark · Madrid System Practice
 
 > *"Ask once. Get a filing-ready Madrid practice answer."*
 > *「一句话问清程序，拿回一份能直接用的实务方案。」*
 
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-3.4.5-blue.svg)](https://github.com/huiningip/madrid-trademark)
 [![Agent-Agnostic](https://img.shields.io/badge/Agent-Agnostic-blueviolet)](#install)
 [![Madrid Members](https://img.shields.io/badge/Madrid%20Members-117%20%C2%B7%20133%20countries-green)](https://www.wipo.int/en/web/madrid-system/members/)
@@ -262,6 +265,8 @@ madrid-trademark/
 ├── SKILL.md                          # Main document (read by the agent; six-part structure: role / task / context / process / rules / output format)
 ├── README.md                         # Chinese README (default)
 ├── README.en.md                      # English README (this file)
+├── LICENSE                           # MIT License
+├── logo.png                          # Brand mark (README header)
 ├── references/                       # 15 items: 13 Markdown + 2 official PDFs
 │   ├── madrid-agreement.md / -en.md           # Madrid Agreement (18 Articles, full text zh/en)
 │   ├── madrid-protocol.md / -en.md            # Madrid Protocol (16 Articles + 10 sub-rules, full text zh/en)
@@ -305,7 +310,11 @@ So the four layers of legal text (Agreement / Protocol / Regulations / Administr
 
 ## License
 
-Copyright **Hui Ning IP (辉宁知识产权)**. No open-source licence file is bundled; all rights are reserved by default. To release this openly, add a `LICENSE` (MIT, for example) before publishing and update the badge and this section accordingly.
+Released under the **MIT License** ([LICENSE](LICENSE)). You are free to **use, modify and distribute** this project, **including commercially** — internal company use, delivery in client case work, derivative works and redistribution all require no prior authorisation, no fee and no notice. Attribution is not required, though it is welcome.
+
+Copyright **Hui Ning IP (辉宁知识产权)**.
+
+**Scope note.** The MIT licence covers this skill's own code (`scripts/`) and documentation (`SKILL.md`, the two READMEs, the skill-compiled material in `references/`, and `templates/`). The WIPO Lex official treaty texts reproduced verbatim under `references/`, and the two official WIPO/CNIPA PDFs, remain the property of their issuing bodies; they are bundled for verification convenience and are **not covered by this licence** — observe the source terms when using them.
 
 Any conclusion produced with this skill should be reviewed against the designated party's national law and the facts of the case before it is relied upon; as a practice aid, it does not constitute legal advice.
 
