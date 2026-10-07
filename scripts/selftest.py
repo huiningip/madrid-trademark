@@ -496,6 +496,229 @@ def test_cli_smoke():
     eq(code, 2, "12 个月 + 异议应返回退出码 2")
 
 
+def test_version_consistency():
+    """版本一致性：frontmatter（单一真源）与两个派生同步点必须一致。"""
+    skill_md = (SKILL_DIR / "SKILL.md").read_text(encoding="utf-8")
+    chg_md = (SKILL_DIR / "references" / "changelog.md").read_text(encoding="utf-8")
+
+    m_fm = re.search(r'^version:\s*["\']?([0-9]+\.[0-9]+\.[0-9]+)', skill_md, re.MULTILINE)
+    is_true(m_fm is not None, "frontmatter 应含 SemVer version 字段")
+    v_fm = m_fm.group(1)
+
+    m_tail = re.search(r'^> \*\*版本\*\*：v([0-9]+\.[0-9]+\.[0-9]+)', skill_md, re.MULTILINE)
+    is_true(m_tail is not None, "SKILL.md 文末应含版本行")
+    eq(m_tail.group(1), v_fm, "SKILL.md 文末版本 == frontmatter")
+
+    m_cur = re.search(r'^> \*\*当前版本\*\*：v([0-9]+\.[0-9]+\.[0-9]+)', chg_md, re.MULTILINE)
+    is_true(m_cur is not None, "changelog 应含「当前版本」行")
+    eq(m_cur.group(1), v_fm, "changelog 当前版本 == frontmatter")
+
+    m_row = re.search(r'^\| \*\*v([0-9]+\.[0-9]+\.[0-9]+)\*\* \|', chg_md, re.MULTILINE)
+    is_true(m_row is not None, "changelog 版本历史表应含版本行")
+    eq(m_row.group(1), v_fm, "changelog 版本历史表首行版本 == frontmatter")
+
+    m_last = re.search(r'^> \*\*最近一次变更\*\*：v([0-9]+\.[0-9]+\.[0-9]+)', chg_md, re.MULTILINE)
+    is_true(m_last is not None, "changelog 应含「最近一次变更」行")
+    eq(m_last.group(1), v_fm, "changelog「最近一次变更」版本 == frontmatter")
+
+
+INDEX_NAME = "madrid-file-index.md"
+INDEX_LARGE = ["madrid-agreement.md", "madrid-protocol.md", "madrid-regulations.md",
+               "madrid-admin-instructions.md"]
+
+
+def regenerate_index():
+    """重生成 madrid-file-index.md 的第 0 节（体积表）与第 I 节（章节→行号索引）。"""
+    d = SKILL_DIR / "references"
+    sizes = []
+    for p in sorted(d.iterdir()):
+        if p.is_file() and p.name != INDEX_NAME:
+            b = p.read_bytes()
+            sizes.append("| `%s` | %d | %d |" % (p.name, len(b), b.count(b"\n")))
+    blocks = []
+    for name in INDEX_LARGE:
+        p = d / name
+        if not p.exists():
+            continue
+        src = p.read_text(encoding="utf-8").splitlines()
+        blocks.append("### %s（%d 行）" % (name, len(src)))
+        blocks.append("| 行号 | 章节 |")
+        blocks.append("| --- | --- |")
+        for i, s in enumerate(src, 1):
+            if s.startswith("## "):
+                blocks.append("| %d | %s |" % (i, s[3:].strip()))
+        blocks.append("")
+    path = d / INDEX_NAME
+    txt = path.read_text(encoding="utf-8")
+    txt = re.sub(r"(?s)<!-- SIZE_TABLE_START -->.*?<!-- SIZE_TABLE_END -->",
+                 "<!-- SIZE_TABLE_START -->\n| 文件 | 字节 | 行数 |\n| --- | --- | --- |\n"
+                 + "\n".join(sizes) + "\n<!-- SIZE_TABLE_END -->", txt, count=1)
+    txt = re.sub(r"(?s)<!-- LINE_INDEX_START -->.*?<!-- LINE_INDEX_END -->",
+                 "<!-- LINE_INDEX_START -->\n" + "\n".join(blocks) + "\n<!-- LINE_INDEX_END -->", txt, count=1)
+    txt = txt.replace("\r\n", "\n").replace("\n", "\r\n")
+    path.write_text(txt, encoding="utf-8", newline="")
+    return path
+
+
+def test_reference_integrity():
+    """引用存在性：SKILL.md 与全部 references/*.md 中的 @references/… 指针必须存在（含 .md 与 .pdf）。"""
+    pat = re.compile(r"@references/([^\s`|]+?\.(?:md|pdf))")
+    targets = [SKILL_DIR / "SKILL.md"] + sorted((SKILL_DIR / "references").glob("*.md"))
+    missing = []
+    for p in targets:
+        for m in pat.finditer(p.read_text(encoding="utf-8")):
+            if not (SKILL_DIR / "references" / m.group(1)).exists():
+                missing.append("%s -> %s" % (p.name, m.group(1)))
+    is_true(not missing, "引用目标均存在；缺失：%s" % missing)
+
+
+def test_no_orphan_references():
+    """孤儿文件：references/ 下每个文件都应被 SKILL.md 或某个 references/*.md 提及。"""
+    d = SKILL_DIR / "references"
+    files = sorted(p for p in d.iterdir() if p.is_file())
+    md = {p.name: p.read_text(encoding="utf-8") for p in files if p.suffix == ".md"}
+    skill_txt = (SKILL_DIR / "SKILL.md").read_text(encoding="utf-8")
+    orphans = []
+    for p in files:
+        others = skill_txt + "".join(t for n, t in md.items() if n != p.name)
+        if p.name not in others:
+            orphans.append(p.name)
+    is_true(not orphans, "无孤儿文件；孤儿：%s" % orphans)
+
+
+def _index_text():
+    return (SKILL_DIR / "references" / "madrid-file-index.md").read_text(encoding="utf-8")
+
+
+def test_file_index_size_table():
+    """体积表漂移：madrid-file-index.md 第 0 节声明的字节/行数须与磁盘一致，且覆盖全部 references 文件。"""
+    rows = {}
+    for m in re.finditer(r"^\|\s*`([^`]+\.md)`\s*\|\s*(\d+)\s*\|\s*(\d+)\s*\|", _index_text(), re.MULTILINE):
+        rows[m.group(1)] = (int(m.group(2)), int(m.group(3)))
+    is_true(rows, "第 0 节体积表应可解析")
+    d = SKILL_DIR / "references"
+    actual = {}
+    for p in sorted(d.iterdir()):
+        if p.is_file() and p.name != "madrid-file-index.md":
+            b = p.read_bytes()
+            actual[p.name] = (len(b), b.count(b"\n"))
+    bad = [n for n in rows if n in actual and actual[n] != rows[n]] + [n for n in rows if n not in actual]
+    missing = [n for n in actual if n not in rows]
+    is_true(not bad, "体积表与磁盘一致；偏差：%s" % [(n, rows.get(n), actual.get(n)) for n in bad])
+    is_true(not missing, "体积表已覆盖全部文件；未登记：%s" % missing)
+
+
+def test_file_index_line_numbers():
+    """索引行号有效性：madrid-file-index.md 第 I 节声明的行号处须确为所声明章节。"""
+    cur, checked, bad = None, 0, []
+    for ln in _index_text().splitlines():
+        mf = re.match(r"^###\s+(\S+\.md)", ln.strip())
+        if mf:
+            cur = mf.group(1)
+            continue
+        mr = re.match(r"^\|\s*(\d+)\s*\|\s*(.+?)\s*\|$", ln.strip())
+        if mr and cur:
+            n, title = int(mr.group(1)), mr.group(2)
+            p = SKILL_DIR / "references" / cur
+            if not p.exists():
+                bad.append("%s 不存在" % cur)
+                continue
+            src = p.read_text(encoding="utf-8").splitlines()
+            if not (1 <= n <= len(src)):
+                bad.append("%s:%d 越界" % (cur, n))
+                continue
+            if title in src[n - 1]:
+                checked += 1
+            else:
+                bad.append("%s:%d 期望含「%s」实际「%s」" % (cur, n, title, src[n - 1].strip()[:40]))
+    is_true(checked >= 8, "行号索引应覆盖 4 个法律全文文件（实测 %d 条）" % checked)
+    is_true(not bad, "行号索引与磁盘对齐；偏差：%s" % bad)
+
+
+PLATFORM_REQUIRED_FIELDS = ["description", "description_zh", "description_en", "version", "author"]
+PLATFORM_ALLOWED_ROOT = {
+    "SKILL.md", "references", "scripts", "templates",
+    "_meta.json", "_user_meta.json", "_skillhub_meta.json", "_icon.png",
+}
+
+
+def test_platform_structure():
+    """平台结构合规（依据开放平台《技能》文档 https://open.workbuddy.cn/docs/skill）：
+    ① SKILL.md = YAML frontmatter + Markdown 正文；② 5 个必填字段齐全；
+    ③ 一级条目仅平台标准 4 项（外加平台运行期写入的白名单文件）；④ 子资源目录下无子目录（严格 2 级）；
+    ⑤ scripts/ 各文件已在 SKILL.md 中声明。
+    """
+    skill_md = (SKILL_DIR / "SKILL.md").read_text(encoding="utf-8")
+    lines = skill_md.splitlines()
+
+    # ① frontmatter 结构
+    is_true(bool(lines) and lines[0].strip() == "---", "SKILL.md 首行应为 ---（YAML frontmatter 起始）")
+    end = next((i for i, l in enumerate(lines[1:], 1) if l.strip() == "---"), None)
+    is_true(end is not None, "frontmatter 应有闭合的 ---")
+    fm_keys = [l.split(":", 1)[0].strip() for l in lines[1:end] if re.match(r"^[A-Za-z_-]+:", l)]
+
+    # ② 5 个必填字段
+    miss = [f for f in PLATFORM_REQUIRED_FIELDS if f not in fm_keys]
+    is_true(not miss, "frontmatter 缺少平台必填字段：%s" % miss)
+
+    # ③ 一级条目
+    root = {p.name for p in SKILL_DIR.iterdir()}
+    for need in ("SKILL.md", "references", "scripts", "templates"):
+        is_true(need in root, "缺少平台标准一级条目：%s" % need)
+    extra = sorted(root - PLATFORM_ALLOWED_ROOT)
+    is_true(not extra, "一级条目含非平台标准项：%s" % extra)
+
+    # ④ 子资源目录下无子目录（严格 2 级；可捕获 __pycache__）
+    subdirs = []
+    for d in ("references", "scripts", "templates"):
+        p = SKILL_DIR / d
+        if p.is_dir():
+            subdirs += ["%s/%s" % (d, c.name) for c in p.iterdir() if c.is_dir()]
+    is_true(not subdirs, "子资源目录下不得有子目录（严格 2 级）：%s" % subdirs)
+
+    # ⑤ scripts 已在 SKILL.md 声明
+    undeclared = sorted(p.name for p in (SKILL_DIR / "scripts").iterdir()
+                        if p.is_file() and p.name not in skill_md)
+    is_true(not undeclared, "scripts/ 文件未在 SKILL.md 中声明：%s" % undeclared)
+
+
+ENCODING_SKIP_SUFFIX = {".pdf", ".png", ".jpg", ".zip", ".pyc"}
+
+
+def test_encoding_purity():
+    """行尾纯度（家族约定）：Markdown（SKILL.md / references / templates）= 纯 CRLF；
+    scripts/ 下 .py 与 .json = LF；均须无 BOM、无 \r\r\n、无孤立 CR。
+    （仅查家族约定的文本类文件，二进制资源不在此列。）
+    """
+    targets = [(SKILL_DIR / "SKILL.md", "CRLF")]
+    for sub, expect in (("references", "CRLF"), ("templates", "CRLF"), ("scripts", "LF")):
+        d = SKILL_DIR / sub
+        if not d.is_dir():
+            continue
+        for p in sorted(d.iterdir()):
+            if p.is_file() and p.suffix.lower() not in ENCODING_SKIP_SUFFIX:
+                targets.append((p, expect))
+
+    bad = []
+    for p, expect in targets:
+        b = p.read_bytes()
+        rel = "%s/%s" % (p.parent.name, p.name) if p.parent != SKILL_DIR else p.name
+        if b.startswith(b"\xef\xbb\xbf"):
+            bad.append("%s 含 UTF-8 BOM" % rel)
+            continue
+        dbl = b.count(b"\r\r\n")
+        lone = b.count(b"\r") - b.count(b"\r\n")
+        if dbl or lone:
+            bad.append("%s 行尾不纯（\\r\\r\\n ×%d，孤立 CR ×%d）" % (rel, dbl, lone))
+            continue
+        crlf_n, lf_n = b.count(b"\r\n"), b.count(b"\n") - b.count(b"\r\n")
+        if expect == "CRLF" and lf_n:
+            bad.append("%s 应为纯 CRLF，却含裸 LF ×%d" % (rel, lf_n))
+        elif expect == "LF" and crlf_n:
+            bad.append("%s 应为纯 LF，却含 CRLF ×%d" % (rel, crlf_n))
+    is_true(not bad, "行尾纯度合规；异常：%s" % bad)
+
+
 # ---------------------------------------------------------------- 运行器
 
 TESTS = [
@@ -508,6 +731,13 @@ TESTS = [
     ("费率生效日（2026-11-01 调整与跨生效日提示）", test_effective_dates),
     ("数据一致性（fees.md ↔ fee_data.json）", test_fees_md_matches_json),
     ("命令行入口冒烟（参数解析与退出码）", test_cli_smoke),
+    ("版本一致性（frontmatter / SKILL 文末 / changelog）", test_version_consistency),
+    ("引用存在性（@references 指针，含 .md 与 .pdf）", test_reference_integrity),
+    ("孤儿文件（references 未被任何文件引用）", test_no_orphan_references),
+    ("体积表漂移（madrid-file-index 第 0 节）", test_file_index_size_table),
+    ("索引行号有效性（madrid-file-index 第 I 节）", test_file_index_line_numbers),
+    ("平台结构合规（frontmatter 必填字段 / 一级条目 / 2 级目录 / scripts 声明）", test_platform_structure),
+    ("行尾纯度（Markdown CRLF / scripts LF / 无 BOM 无 \\r\\r\\n）", test_encoding_purity),
 ]
 
 
@@ -515,6 +745,9 @@ def main(argv=None) -> int:
     _configure_stdout()
     argv = list(sys.argv[1:] if argv is None else argv)
     verbose = "-v" in argv
+    if "--fix-index" in argv:
+        regenerate_index()
+        print("[FIX] madrid-file-index.md 已重生成（体积表 + 行号索引）")
     failures = []
     for label, fn in TESTS:
         try:
