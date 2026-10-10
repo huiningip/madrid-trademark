@@ -1,0 +1,48 @@
+name: selftest
+
+# 何时跑：推到 main、任何 PR、以及可手动触发（首次想让徽章变绿时用 Run workflow）
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# 只读权限即可（自检不写任何文件）
+permissions:
+  contents: read
+
+jobs:
+  selftest:
+    name: py${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # 3.10 = README 承诺的最低版本；3.13 = 较新版本。新版本发布后可再加。
+        python-version: ["3.10", "3.13"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # ⚠️ 关键：自检面向「已安装的技能目录」，它校验"一级条目只能是平台标准项"。
+      # 而仓库根另有 README×8 / LICENSE / logo.png / .github —— 会被判为非标准一级条目，
+      # 实测在仓库根直接跑会 FAIL（1/16）。所以先复制出一个纯技能目录再跑。
+      - name: Stage a skill-only directory
+        run: |
+          mkdir -p "$RUNNER_TEMP/skill"
+          for f in SKILL.md references scripts templates \
+                   _meta.json _user_meta.json _skillhub_meta.json _icon.png; do
+            if [ -e "$f" ]; then cp -R "$f" "$RUNNER_TEMP/skill/"; fi
+          done
+          ls -A "$RUNNER_TEMP/skill"
+
+      # 脚本 imports 同目录模块（madrid_fee 等），须以「脚本所在目录」为 cwd 直接执行；
+      # 不要用 python -m，也不要在仓库根执行。退出码 0=全通过 / 1=有失败。
+      - name: Run self-test
+        run: |
+          cd "$RUNNER_TEMP/skill"
+          python -B scripts/selftest.py
