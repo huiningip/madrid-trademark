@@ -9,8 +9,9 @@
 > *« Une question. Une réponse directement exploitable au dossier. »*
 > *"Ask once. Get a filing-ready Madrid practice answer."*
 
+[![selftest](https://github.com/huiningip/madrid-trademark/actions/workflows/selftest.yml/badge.svg)](https://github.com/huiningip/madrid-trademark/actions/workflows/selftest.yml)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-3.4.5-blue.svg)](https://github.com/huiningip/madrid-trademark)
+[![Version](https://img.shields.io/badge/version-3.7.4-blue.svg)](https://github.com/huiningip/madrid-trademark)
 [![Agent-Agnostic](https://img.shields.io/badge/Agent-Agnostic-blueviolet)](#installation)
 [![Madrid Members](https://img.shields.io/badge/Madrid%20Members-117%20%C2%B7%20133%20countries-green)](https://www.wipo.int/en/web/madrid-system/members/)
 ![Office-Neutral](https://img.shields.io/badge/Perspective-Office--Neutral-orange)
@@ -70,14 +71,14 @@ npx skills add huiningip/madrid-trademark
 git clone https://github.com/huiningip/madrid-trademark ~/.workbuddy/skills/madrid-trademark
 ```
 
-> **Vérifiez après installation** : ce n'est pas une compétence réduite au seul `SKILL.md`. `references/` (13 fichiers Markdown + 2 PDF officiels), `scripts/` (7 scripts Python + 2 fichiers JSON de données) et `templates/` (2 modèles) sont des entités référencées dans le corps du texte par des chemins relatifs `@` ; en manquer une suffit à rompre la chaîne.
+> **Vérifiez après installation** : ce n'est pas une compétence réduite au seul `SKILL.md`. `references/` (19 fichiers Markdown), `scripts/` (7 scripts Python + 2 fichiers JSON de données) et `templates/` (2 modèles) sont des entités référencées dans le corps du texte par des chemins relatifs `@` ; en manquer une suffit à rompre la chaîne.
 >
 > Après installation, inspectez le répertoire : si seul `SKILL.md` est présent et que les sous-répertoires manquent, votre outil de synchronisation n'a récupéré qu'un fichier — réinstallez avec `git clone` ci-dessus.
 >
 > Auto-test des scripts (Python 3.10+ ; les scripts hors ligne n'utilisent que la bibliothèque standard) :
 >
 > ```bash
-> py -B scripts/selftest.py     # 9 groupes de cas — tout au vert = déploiement complet
+> py -B scripts/selftest.py     # 16 groupes de cas — tout au vert = déploiement complet
 > ```
 
 Puis adressez-vous directement à l'agent, dans n'importe quel agent compatible skills :
@@ -273,7 +274,7 @@ madrid-trademark/
 ├── README.ru.md                      # Русский
 ├── LICENSE                           # Licence MIT
 ├── logo.png                          # Marque de l'entreprise (en-tête du README)
-├── references/                       # 15 éléments : 13 Markdown + 2 PDF officiels
+├── references/                       # 19 fichiers Markdown
 │   ├── madrid-agreement.md / -en.md           # Arrangement de Madrid (18 articles, texte intégral zh/en)
 │   ├── madrid-protocol.md / -en.md            # Protocole de Madrid (16 articles + 10 sous-règles, zh/en)
 │   ├── madrid-regulations.md / -en.md         # Règlement d'exécution (41 règles + notes officielles, zh/en)
@@ -283,8 +284,12 @@ madrid-trademark/
 │   ├── madrid-faq.md                          # FAQ + 16 contre-exemples + index des articles
 │   ├── madrid-goods-services-classification.md    # Synthèse du guide de classification (5e éd., 2026)
 │   ├── madrid-fast-track-examination-cnipa.md     # Examen accéléré du CNIPA : points pratiques
-│   ├── madrid-efiling-applicant-guide.pdf         # Guide du déposant e-Filing de l'OMPI (officiel, 43 p.)
-│   └── madrid-goods-services-classification-guide.pdf  # Guide officiel de classification (5e éd.)
+│   ├── madrid-cnipa-bridge.md                 # Chapitre de liaison CNIPA (pratique pour la Chine)
+│   ├── madrid-workflows.md                    # Flux de travail complets (dépôt / désignation postérieure / refus / renouvellement)
+│   ├── madrid-scripts.md                      # Index d'usage des scripts (paramètres et sortie)
+│   ├── madrid-sources.md                      # Sources externes faisant autorité et chemins de recherche
+│   ├── changelog.md                           # Historique des versions et règles de développement (3 dernières)
+│   └── madrid-file-index.md                   # Base de tailles et index de lignes (généré par script)
 ├── scripts/                          # 9 éléments : 7 Python + 2 JSON
 │   ├── madrid_fee.py                 # Calculateur de taxes (instantané hors ligne, --date applique les entrées en vigueur)
 │   ├── madrid_fee_data.json          # Miroir machine des taxes (aligné partie par partie avec madrid-fees.md)
@@ -294,7 +299,7 @@ madrid-trademark/
 │   ├── madrid_feecalc_live.py        # Mesure des taxes en direct (navigateur pilotant le calculateur officiel ; outil d'arbitrage)
 │   ├── wipo_lex_fetch.py             # Extraction littérale des traités WIPO Lex (vers Markdown)
 │   ├── madrid_dateutil.py            # Utilitaires de dates partagés (mois civil, fin de mois, année bissextile)
-│   └── selftest.py                   # 9 groupes d'auto-tests (dont deux contrôles de cohérence)
+│   └── selftest.py                   # 16 groupes d'auto-tests (dont deux contrôles de cohérence)
 └── templates/                        # À copier avant usage ; ne pas modifier les originaux sur place
     ├── madrid_application_checklist.md      # Liste d'auto-contrôle avant dépôt du MM2
     └── madrid_refusal_response_memo.md      # Note de réponse au refus provisoire
@@ -320,7 +325,7 @@ Publié sous **licence MIT** ([LICENSE](LICENSE)). Vous êtes libre d'**utiliser
 
 Copyright **Hui Ning IP (辉宁知识产权)**.
 
-**Périmètre.** La licence MIT couvre le code (`scripts/`) et la documentation propres à cette compétence (`SKILL.md`, les README, les synthèses de `references/`, `templates/`). Les textes officiels WIPO Lex reproduits littéralement dans `references/` et les deux PDF officiels OMPI/CNIPA restent la propriété de leurs organismes émetteurs : ils sont joints pour faciliter la vérification et **ne sont pas couverts par cette licence** — respectez les conditions de leurs sources.
+**Périmètre.** La licence MIT couvre le code (`scripts/`) et la documentation propres à cette compétence (`SKILL.md`, les README, les synthèses de `references/`, `templates/`). Les textes officiels WIPO Lex reproduits littéralement dans `references/` restent la propriété de leurs organismes émetteurs : ils sont joints pour faciliter la vérification et **ne sont pas couverts par cette licence** — respectez les conditions de leurs sources.
 
 Toute conclusion produite avec cette compétence doit être confrontée au droit national de la partie désignée et aux faits de l'espèce avant d'être invoquée ; en tant qu'aide à la pratique, elle ne constitue pas un avis juridique.
 

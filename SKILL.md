@@ -483,7 +483,7 @@ CNIPA 作为原属局的提交途径与材料、驳回理由与中国《商标�
 | 规费计算器（离线） | `scripts/madrid_fee.py` | 按官方费用表计算 WIPO 官费 + 各缔约方单独规费（支持颜色、LDC、集体商标、宽限期、后期指定、古巴第二段费），并按 `--date` 套用**已公告的费率调整**、提示跨生效日与未实测组件 | `py madrid_fee.py --countries ID,IL --classes 2 --date 2026/11/01` |
 | 期限计算器（两类期限） | `scripts/madrid_deadline.py` | ① 默认模式：按**声明**计算驳回期（基准 12 / 声明后 18 / 异议延长至 25 个月，支持后期指定自登记日起算）；② `--respond`：计算**注册人答复临时驳回**的期限（内建 WIPO Rule 17(7) 的 38 成员数据，含中国 15/30 日、法国 1 个月、美国异议 40 日等，并按 6 种起算基准判定是否可按收件日计算） | `py madrid_deadline.py --register 2026-01-15 --declared-18`<br>`py madrid_deadline.py --respond --cp CN --received 2026-09-20` |
 | 续展提醒 | `scripts/madrid_renewal.py` | 计算续展窗口（提前 6 个月、宽限期 6 个月）与宽限期附加费 | `py madrid_renewal.py --register 2016-07-01 --protection-years 10` |
-| 自检 | `scripts/selftest.py` | 9 组用例：日期边界、期限口径、**答复期限（15/30 日与 6 种起算基准）**、**答复期限数据 ↔ 声明文档一致性**、续展四阶段、规费模式、费率生效日、fees.md ↔ 数据文件一致性、CLI 冒烟 | `py -B selftest.py` |
+| 自检 | `scripts/selftest.py` | 16 组用例：日期边界、期限口径、**答复期限（15/30 日与 6 种起算基准）**、**答复期限数据 ↔ 声明文档一致性**、续展四阶段、规费模式、费率生效日、fees.md ↔ 数据文件一致性、CLI 冒烟；另含七项治理类校验：**版本一致性、引用存在性、孤儿文件、体积表漂移、索引行号有效性、平台结构合规、行尾纯度** | `py -B selftest.py` |
 | **实时规费核算** | `scripts/madrid_feecalc_live.py` | 用真实浏览器驱动 **WIPO Fee Calculator**，按「原属局 + 类别数 + 缔约方清单」取得逐国权威金额并输出基本费/单独规费/补充费/总计；支持 `--colour`、`--collective`、`--dump` 留痕 | `py madrid_feecalc_live.py --origin US --classes 1 --countries JP,ID,IL` |
 | **条约全文抓取** | `scripts/wipo_lex_fetch.py` | 从 WIPO Lex 文本页抓取条约/细则/行政规程**逐字全文**（服务端渲染，无需浏览器）：`--inspect` 先勘察结构，`--out` 落地为 Markdown，`--preserve-notes` 把旧要点保为文末附录；自动处理「整份文档内嵌于 `printID` 容器」与中文排版空格 | `py -B wipo_lex_fetch.py --url https://www.wipo.int/wipolex/en/text/384637 --inspect` |
 

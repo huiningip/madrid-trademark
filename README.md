@@ -9,8 +9,9 @@
 > *「一句话问清程序，拿回一份能直接用的实务方案。」*
 > *"Ask once. Get a filing-ready Madrid practice answer."*
 
+[![selftest](https://github.com/huiningip/madrid-trademark/actions/workflows/selftest.yml/badge.svg)](https://github.com/huiningip/madrid-trademark/actions/workflows/selftest.yml)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-3.4.5-blue.svg)](https://github.com/huiningip/madrid-trademark)
+[![Version](https://img.shields.io/badge/version-3.7.4-blue.svg)](https://github.com/huiningip/madrid-trademark)
 [![Agent-Agnostic](https://img.shields.io/badge/Agent-Agnostic-blueviolet)](#装上就能用)
 [![Madrid Members](https://img.shields.io/badge/Madrid%20Members-117%20%C2%B7%20133%20countries-green)](https://www.wipo.int/en/web/madrid-system/members/)
 ![Office-Neutral](https://img.shields.io/badge/Perspective-Office--Neutral-orange)
@@ -69,14 +70,14 @@ npx skills add huiningip/madrid-trademark
 git clone https://github.com/huiningip/madrid-trademark ~/.workbuddy/skills/madrid-trademark
 ```
 
-> **装完先自检**：这不是一个只有 `SKILL.md` 的技能。`references/`（13 份 Markdown + 2 份官方 PDF）、`scripts/`（7 个 Python 脚本 + 2 份 JSON 数据）、`templates/`（2 份模板）都是被正文以 `@` 相对路径引用的实体，缺一即会断链。
+> **装完先自检**：这不是一个只有 `SKILL.md` 的技能。`references/`（19 份 Markdown）、`scripts/`（7 个 Python 脚本 + 2 份 JSON 数据）、`templates/`（2 份模板）都是被正文以 `@` 相对路径引用的实体，缺一即会断链。
 >
 > 装完看一眼安装目录：若只有 `SKILL.md`、没有那几个子目录，说明同步工具只抓了单文件——改用上面的 `git clone` 重新装一次即可。
 >
 > 脚本自检（Python 3.10+，离线脚本仅用标准库）：
 >
 > ```bash
-> py -B scripts/selftest.py     # 9 组用例，全绿即为完整部署
+> py -B scripts/selftest.py     # 16 组用例，全绿即为完整部署
 > ```
 
 然后在任意支持 skills 的 agent 里直接说话：
@@ -272,7 +273,7 @@ madrid-trademark/
 ├── README.ru.md                      # Русский
 ├── LICENSE                           # MIT 许可证
 ├── logo.png                          # 品牌标识（README 首屏）
-├── references/                       # 15 份：13 Markdown + 2 官方 PDF
+├── references/                       # 19 份 Markdown
 │   ├── madrid-agreement.md / -en.md           # 马德里协定（18 条，中英全文）
 │   ├── madrid-protocol.md / -en.md            # 马德里议定书（16 条 + 10 分条，中英全文）
 │   ├── madrid-regulations.md / -en.md         # 实施细则（41 条 + 官方脚注，中英全文）
@@ -282,8 +283,12 @@ madrid-trademark/
 │   ├── madrid-faq.md                          # FAQ + 16 条反例 + 条文索引
 │   ├── madrid-goods-services-classification.md    # 分类审查指南提炼（第五版，2026）
 │   ├── madrid-fast-track-examination-cnipa.md     # CNIPA 快速审查办理要点
-│   ├── madrid-efiling-applicant-guide.pdf         # WIPO e-Filing 申请人操作指南（官方 43 页）
-│   └── madrid-goods-services-classification-guide.pdf  # 官方分类审查指南（第五版）
+│   ├── madrid-cnipa-bridge.md                 # CNIPA 衔接专章要点（中国指定实务）
+│   ├── madrid-workflows.md                    # 端到端作业流程（申请/后期指定/驳回/续展）
+│   ├── madrid-scripts.md                      # 脚本用法索引（参数与输出）
+│   ├── madrid-sources.md                      # 外部权威源与检索路径清单
+│   ├── changelog.md                           # 版本历史与开发规范（近 3 版）
+│   └── madrid-file-index.md                   # 体积基准与行号定位索引（脚本生成）
 ├── scripts/                          # 9 个：7 Python + 2 JSON
 │   ├── madrid_fee.py                 # 规费计算器（离线快照，支持 --date 生效日调整）
 │   ├── madrid_fee_data.json          # 费用数据机器可读镜像（与 madrid-fees.md 逐国对齐）
@@ -293,7 +298,7 @@ madrid-trademark/
 │   ├── madrid_feecalc_live.py        # 实时规费核算（浏览器驱动官方 Fee Calculator，裁决用）
 │   ├── wipo_lex_fetch.py             # WIPO Lex 条约全文抓取（逐字落地 Markdown）
 │   ├── madrid_dateutil.py            # 共享日期工具（自然月推进 / 月末 / 闰年兜底）
-│   └── selftest.py                   # 9 组用例自检（含两份一致性比对）
+│   └── selftest.py                   # 16 组用例自检（含两份一致性比对）
 └── templates/                        # 作业时复制取用，勿直接改写原件
     ├── madrid_application_checklist.md      # MM2 提交前逐项自检清单
     └── madrid_refusal_response_memo.md      # 临时驳回答复要点备忘录
@@ -319,7 +324,7 @@ madrid-trademark/
 
 版权归 **辉宁知识产权** 所有。
 
-**授权范围说明**：MIT 协议覆盖本技能自身的代码（`scripts/`）与文档（`SKILL.md`、八语 README、`references/` 中的技能整理内容、`templates/`）。`references/` 下按原文收录的 WIPO Lex 官方条约文本及两份 WIPO/CNIPA 官方 PDF，权利仍属原发布机构，随附仅为便于核验，**不受本协议覆盖**——使用时请遵守来源方的使用条款。
+**授权范围说明**：MIT 协议覆盖本技能自身的代码（`scripts/`）与文档（`SKILL.md`、八语 README、`references/` 中的技能整理内容、`templates/`）。`references/` 下按原文收录的 WIPO Lex 官方条约文本，权利仍属原发布机构，随附仅为便于核验，**不受本协议覆盖**——使用时请遵守来源方的使用条款。
 
 使用本技能产出的任何结论，落地前请结合指定缔约方国内法与个案事实复核；因其为实务辅助工具，不构成法律意见。
 

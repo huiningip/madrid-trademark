@@ -9,8 +9,9 @@
 > *«سؤال واحد. جواب جاهز للوضع في الملف.»*
 > *"Ask once. Get a filing-ready Madrid practice answer."*
 
+[![selftest](https://github.com/huiningip/madrid-trademark/actions/workflows/selftest.yml/badge.svg)](https://github.com/huiningip/madrid-trademark/actions/workflows/selftest.yml)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-3.4.5-blue.svg)](https://github.com/huiningip/madrid-trademark)
+[![Version](https://img.shields.io/badge/version-3.7.4-blue.svg)](https://github.com/huiningip/madrid-trademark)
 [![Agent-Agnostic](https://img.shields.io/badge/Agent-Agnostic-blueviolet)](#التثبيت)
 [![Madrid Members](https://img.shields.io/badge/Madrid%20Members-117%20%C2%B7%20133%20countries-green)](https://www.wipo.int/en/web/madrid-system/members/)
 ![Office-Neutral](https://img.shields.io/badge/Perspective-Office--Neutral-orange)
@@ -66,14 +67,14 @@ npx skills add huiningip/madrid-trademark
 git clone https://github.com/huiningip/madrid-trademark ~/.workbuddy/skills/madrid-trademark
 ```
 
-> **تحقّق بعد التثبيت.** هذه ليست مهارة مكوّنة من `SKILL.md` وحده. فـ`references/` (١٣ ملف Markdown + ملفَّا PDF رسميان) و`scripts/` (٧ نصوص Python + ملفّا JSON للبيانات) و`templates/` (قالبان) كيانات يشير إليها متن المهارة بمسارات نسبية عبر `@`؛ ويكفي فقدان أحدها لانقطاع السلسلة.
+> **تحقّق بعد التثبيت.** هذه ليست مهارة مكوّنة من `SKILL.md` وحده. فـ`references/` (١٩ ملف Markdown) و`scripts/` (٧ نصوص Python + ملفّا JSON للبيانات) و`templates/` (قالبان) كيانات يشير إليها متن المهارة بمسارات نسبية عبر `@`؛ ويكفي فقدان أحدها لانقطاع السلسلة.
 >
 > انظر في مجلّد التثبيت: إن وجدت `SKILL.md` وحده دون المجلّدات الفرعية، فأداة المزامنة جلبت ملفًّا واحدًا فقط — أعد التثبيت عبر `git clone` أعلاه.
 >
 > الفحص الذاتي للنصوص (Python 3.10+؛ والنصوص العاملة دون اتصال تستخدم المكتبة القياسية فقط):
 >
 > ```bash
-> py -B scripts/selftest.py     # ٩ مجموعات اختبار — خضراء كلّها = تثبيت كامل
+> py -B scripts/selftest.py     # ١٦ مجموعات اختبار — خضراء كلّها = تثبيت كامل
 > ```
 
 ثم خاطب الوكيل مباشرةً في أي وكيل يدعم المهارات:
@@ -269,7 +270,7 @@ madrid-trademark/
 ├── README.ru.md                      # Русский
 ├── LICENSE                           # رخصة MIT
 ├── logo.png                          # شعار الشركة (أعلى ملف README)
-├── references/                       # ١٥ عنصرًا: ١٣ Markdown + ملفَّا PDF رسميان
+├── references/                       # ١٩ ملف Markdown
 │   ├── madrid-agreement.md / -en.md           # اتفاق مدريد (١٨ مادة، نص كامل zh/en)
 │   ├── madrid-protocol.md / -en.md            # بروتوكول مدريد (١٦ مادة + ١٠ قواعد فرعية، zh/en)
 │   ├── madrid-regulations.md / -en.md         # اللائحة التنفيذية (٤١ قاعدة + حواشٍ رسمية، zh/en)
@@ -279,8 +280,12 @@ madrid-trademark/
 │   ├── madrid-faq.md                          # أسئلة شائعة + ١٦ مخالفة + فهرس المواد
 │   ├── madrid-goods-services-classification.md    # خلاصة دليل تصنيف السلع والخدمات (الطبعة ٥، 2026)
 │   ├── madrid-fast-track-examination-cnipa.md     # نقاط الفحص المعجّل لدى CNIPA
-│   ├── madrid-efiling-applicant-guide.pdf         # دليل المتقدّم في e-Filing (رسمي، ٤٣ صفحة)
-│   └── madrid-goods-services-classification-guide.pdf  # دليل التصنيف الرسمي (الطبعة ٥)
+│   ├── madrid-cnipa-bridge.md                 # فصل الربط مع CNIPA (الممارسة في الصين)
+│   ├── madrid-workflows.md                    # مسارات العمل الكاملة (الإيداع / التحديد اللاحق / الرفض / التجديد)
+│   ├── madrid-scripts.md                      # دليل استخدام النصوص البرمجية (المعاملات والمخرجات)
+│   ├── madrid-sources.md                      # المصادر الخارجية الموثوقة ومسارات البحث
+│   ├── changelog.md                           # سجل الإصدارات وقواعد التطوير (آخر ٣ إصدارات)
+│   └── madrid-file-index.md                   # أساس الأحجام وفهرس الأسطر (مُولَّد آليًّا)
 ├── scripts/                          # ٩ عناصر: ٧ Python + ملفّا JSON
 │   ├── madrid_fee.py                 # حاسبة الرسوم (لقطة دون اتصال؛ و`--date` يطبّق التعديلات السارية)
 │   ├── madrid_fee_data.json          # نسخة آليّة من بيانات الرسوم (مطابقة لـmadrid-fees.md طرفًا بطرف)
@@ -290,7 +295,7 @@ madrid-trademark/
 │   ├── madrid_feecalc_live.py        # قياس الرسوم مباشرةً (متصفّح يقود الحاسبة الرسمية؛ أداة الحسم)
 │   ├── wipo_lex_fetch.py             # سحب نصوص المعاهدات من WIPO Lex (إلى Markdown)
 │   ├── madrid_dateutil.py            # أدوات تواريخ مشتركة (الشهر الميلادي / آخر الشهر / السنة الكبيسة)
-│   └── selftest.py                   # ٩ مجموعات فحص ذاتي (منها مقارنتا اتّساق)
+│   └── selftest.py                   # ١٦ مجموعات فحص ذاتي (منها مقارنتا اتّساق)
 └── templates/                        # تُنسخ قبل الاستخدام؛ ولا تُعدَّل النسخ الأصلية في موضعها
     ├── madrid_application_checklist.md      # قائمة تحقّق بندًا بندًا قبل تقديم MM2
     └── madrid_refusal_response_memo.md      # مذكّرة ردّ على الرفض المؤقت
@@ -316,7 +321,7 @@ madrid-trademark/
 
 حقوق النشر محفوظة لـ**Hui Ning IP (辉宁知识产权)**.
 
-**نطاق الترخيص.** تغطّي رخصة MIT كود المهارة نفسها (`scripts/`) ووثائقها (`SKILL.md` وملفات README بمختلف اللغات وما أعدّته المهارة في `references/` و`templates/`). أمّا نصوص WIPO Lex الرسمية المنقولة حرفيًّا في `references/` وملفّا PDF الرسميان للويبو وCNIPA فتبقى ملكًا لجهاتها المُصدِرة، ومُدرَجة تسهيلًا للتحقّق، و**لا تغطّيها هذه الرخصة** — فيراعَ شرط المصدر عند استخدامها.
+**نطاق الترخيص.** تغطّي رخصة MIT كود المهارة نفسها (`scripts/`) ووثائقها (`SKILL.md` وملفات README بمختلف اللغات وما أعدّته المهارة في `references/` و`templates/`). أمّا نصوص WIPO Lex الرسمية المنقولة حرفيًّا في `references/` فتبقى ملكًا لجهاتها المُصدِرة، ومُدرَجة تسهيلًا للتحقّق، و**لا تغطّيها هذه الرخصة** — فيراعَ شرط المصدر عند استخدامها.
 
 وكل نتيجة تُستخلَص بهذه المهارة يجب مقارنتها بقانون الطرف المعيّن الوطني وبوقائع الحالة قبل التعويل عليها؛ فهي أداة مساندة للممارسة، وليست رأيًا قانونيًّا.
 

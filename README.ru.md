@@ -9,8 +9,9 @@
 > *«Один вопрос — и ответ, пригодный для подшивки в дело.»*
 > *"Ask once. Get a filing-ready Madrid practice answer."*
 
+[![selftest](https://github.com/huiningip/madrid-trademark/actions/workflows/selftest.yml/badge.svg)](https://github.com/huiningip/madrid-trademark/actions/workflows/selftest.yml)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-3.4.5-blue.svg)](https://github.com/huiningip/madrid-trademark)
+[![Version](https://img.shields.io/badge/version-3.7.4-blue.svg)](https://github.com/huiningip/madrid-trademark)
 [![Agent-Agnostic](https://img.shields.io/badge/Agent-Agnostic-blueviolet)](#установка)
 [![Madrid Members](https://img.shields.io/badge/Madrid%20Members-117%20%C2%B7%20133%20countries-green)](https://www.wipo.int/en/web/madrid-system/members/)
 ![Office-Neutral](https://img.shields.io/badge/Perspective-Office--Neutral-orange)
@@ -70,14 +71,14 @@ npx skills add huiningip/madrid-trademark
 git clone https://github.com/huiningip/madrid-trademark ~/.workbuddy/skills/madrid-trademark
 ```
 
-> **Проверьте после установки.** Это не навык из одного `SKILL.md`. `references/` (13 файлов Markdown + 2 официальных PDF), `scripts/` (7 скриптов Python + 2 файла JSON с данными) и `templates/` (2 шаблона) — это сущности, на которые основной текст ссылается относительными путями `@`; отсутствие любой из них разрывает цепочку.
+> **Проверьте после установки.** Это не навык из одного `SKILL.md`. `references/` (19 файлов Markdown), `scripts/` (7 скриптов Python + 2 файла JSON с данными) и `templates/` (2 шаблона) — это сущности, на которые основной текст ссылается относительными путями `@`; отсутствие любой из них разрывает цепочку.
 >
 > Посмотрите каталог установки: если там только `SKILL.md` и нет подкаталогов, значит инструмент синхронизации забрал лишь один файл — переустановите через `git clone` выше.
 >
 > Самопроверка скриптов (Python 3.10+; автономные скрипты используют только стандартную библиотеку):
 >
 > ```bash
-> py -B scripts/selftest.py     # 9 групп случаев — всё зелёное = полная установка
+> py -B scripts/selftest.py     # 16 групп случаев — всё зелёное = полная установка
 > ```
 
 Далее просто говорите с агентом — в любом агенте с поддержкой навыков:
@@ -273,7 +274,7 @@ madrid-trademark/
 ├── README.ru.md                      # Русский (этот файл)
 ├── LICENSE                           # Лицензия MIT
 ├── logo.png                          # Знак компании (в начале README)
-├── references/                       # 15 элементов: 13 Markdown + 2 официальных PDF
+├── references/                       # 19 файлов Markdown
 │   ├── madrid-agreement.md / -en.md           # Мадридское соглашение (18 статей, полный текст zh/en)
 │   ├── madrid-protocol.md / -en.md            # Протокол (16 статей + 10 подправил, zh/en)
 │   ├── madrid-regulations.md / -en.md         # Инструкция (41 правило + официальные сноски, zh/en)
@@ -283,8 +284,12 @@ madrid-trademark/
 │   ├── madrid-faq.md                          # FAQ + 16 контрпримеров + указатель статей
 │   ├── madrid-goods-services-classification.md    # Конспект руководства по классификации (5-е изд., 2026)
 │   ├── madrid-fast-track-examination-cnipa.md     # Ускоренная экспертиза CNIPA: практические положения
-│   ├── madrid-efiling-applicant-guide.pdf         # Руководство заявителя e-Filing ВОИС (официальное, 43 с.)
-│   └── madrid-goods-services-classification-guide.pdf  # Официальное руководство по классификации (5-е изд.)
+│   ├── madrid-cnipa-bridge.md                 # Глава-мост к CNIPA (практика по Китаю)
+│   ├── madrid-workflows.md                    # Сквозные рабочие процессы (заявка / последующее указание / отказ / продление)
+│   ├── madrid-scripts.md                      # Указатель по скриптам (параметры и вывод)
+│   ├── madrid-sources.md                      # Внешние авторитетные источники и пути поиска
+│   ├── changelog.md                           # История версий и правила разработки (последние 3)
+│   └── madrid-file-index.md                   # Базовые размеры и индекс строк (генерируется скриптом)
 ├── scripts/                          # 9 элементов: 7 Python + 2 JSON
 │   ├── madrid_fee.py                 # Калькулятор пошлин (офлайн-снимок; --date применяет вступившие в силу тарифы)
 │   ├── madrid_fee_data.json          # Машиночитаемое зеркало пошлин (сверено по сторонам с madrid-fees.md)
@@ -294,7 +299,7 @@ madrid-trademark/
 │   ├── madrid_feecalc_live.py        # Измерение пошлин онлайн (браузер над официальным калькулятором; инструмент разрешения споров)
 │   ├── wipo_lex_fetch.py             # Дословная выгрузка договоров WIPO Lex (в Markdown)
 │   ├── madrid_dateutil.py            # Общие утилиты дат (календарный месяц, конец месяца, високосный год)
-│   └── selftest.py                   # 9 групп самопроверок (включая две сверки согласованности)
+│   └── selftest.py                   # 16 групп самопроверок (включая две сверки согласованности)
 └── templates/                        # Копировать перед использованием; оригиналы на месте не править
     ├── madrid_application_checklist.md      # Контрольный список перед подачей MM2
     └── madrid_refusal_response_memo.md      # Памятка для ответа на предварительный отказ
@@ -320,7 +325,7 @@ madrid-trademark/
 
 Авторские права принадлежат **Hui Ning IP (辉宁知识产权)**.
 
-**О сфере действия.** Лицензия MIT покрывает собственный код навыка (`scripts/`) и документацию (`SKILL.md`, README на разных языках, материалы, подготовленные навыком в `references/`, и `templates/`). Официальные тексты WIPO Lex, воспроизведённые дословно в `references/`, и два официальных PDF ВОИС/CNIPA остаются собственностью издавших их органов; они включены для удобства проверки и **не покрываются данной лицензией** — соблюдайте условия источников.
+**О сфере действия.** Лицензия MIT покрывает собственный код навыка (`scripts/`) и документацию (`SKILL.md`, README на разных языках, материалы, подготовленные навыком в `references/`, и `templates/`). Официальные тексты WIPO Lex, воспроизведённые дословно в `references/` остаются собственностью издавших их органов; они включены для удобства проверки и **не покрываются данной лицензией** — соблюдайте условия источников.
 
 Любой вывод, полученный с помощью этого навыка, необходимо перед использованием соотнести с национальным правом указываемой стороны и обстоятельствами дела; как вспомогательный инструмент практики он не является юридическим заключением.
 

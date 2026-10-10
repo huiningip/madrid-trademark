@@ -9,8 +9,9 @@
 > *「ひとこと聞けば、そのまま事件簿に入る実務回答が返ってくる。」*
 > *"Ask once. Get a filing-ready Madrid practice answer."*
 
+[![selftest](https://github.com/huiningip/madrid-trademark/actions/workflows/selftest.yml/badge.svg)](https://github.com/huiningip/madrid-trademark/actions/workflows/selftest.yml)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-3.4.5-blue.svg)](https://github.com/huiningip/madrid-trademark)
+[![Version](https://img.shields.io/badge/version-3.7.4-blue.svg)](https://github.com/huiningip/madrid-trademark)
 [![Agent-Agnostic](https://img.shields.io/badge/Agent-Agnostic-blueviolet)](#インストール)
 [![Madrid Members](https://img.shields.io/badge/Madrid%20Members-117%20%C2%B7%20133%20countries-green)](https://www.wipo.int/en/web/madrid-system/members/)
 ![Office-Neutral](https://img.shields.io/badge/Perspective-Office--Neutral-orange)
@@ -69,14 +70,14 @@ npx skills add huiningip/madrid-trademark
 git clone https://github.com/huiningip/madrid-trademark ~/.workbuddy/skills/madrid-trademark
 ```
 
-> **導入後に自己点検を。** これは `SKILL.md` 一枚だけのスキルではありません。`references/`（Markdown 13 件 + 公式 PDF 2 件）、`scripts/`（Python 7 本 + JSON データ 2 件）、`templates/`（テンプレート 2 件）はいずれも本文から `@` の相対パスで参照される実体で、一つ欠ければ参照が切れます。
+> **導入後に自己点検を。** これは `SKILL.md` 一枚だけのスキルではありません。`references/`（Markdown 19 件）、`scripts/`（Python 7 本 + JSON データ 2 件）、`templates/`（テンプレート 2 件）はいずれも本文から `@` の相対パスで参照される実体で、一つ欠ければ参照が切れます。
 >
 > 導入先のディレクトリを見てください。`SKILL.md` しかなくサブディレクトリが無ければ、同期ツールが単一ファイルだけを取得しています。上記の `git clone` で入れ直してください。
 >
 > スクリプトの自己テスト（Python 3.10+、オフラインのスクリプトは標準ライブラリのみ使用）：
 >
 > ```bash
-> py -B scripts/selftest.py     # 9 組のケース。全て緑なら完全な導入です
+> py -B scripts/selftest.py     # 16 組のケース。全て緑なら完全な導入です
 > ```
 
 あとは skills 対応の任意のエージェントに、そのまま話しかけるだけです。
@@ -272,7 +273,7 @@ madrid-trademark/
 ├── README.ru.md                      # Русский
 ├── LICENSE                           # MIT ライセンス
 ├── logo.png                          # 会社のロゴ（README の最初に表示）
-├── references/                       # 15 件：Markdown 13 + 公式 PDF 2
+├── references/                       # Markdown 19 件
 │   ├── madrid-agreement.md / -en.md           # マドリッド協定（18 条、中西全文）
 │   ├── madrid-protocol.md / -en.md            # マドリッドプロトコル（16 条 + 10 細則、中西全文）
 │   ├── madrid-regulations.md / -en.md         # 実施細則（41 規則 + 公式脚注、中西全文）
@@ -282,8 +283,12 @@ madrid-trademark/
 │   ├── madrid-faq.md                          # FAQ + 16 の反例 + 条文索引
 │   ├── madrid-goods-services-classification.md    # 区分審査ガイドの要点（第 5 版、2026）
 │   ├── madrid-fast-track-examination-cnipa.md     # CNIPA 早期審査の実務要点
-│   ├── madrid-efiling-applicant-guide.pdf         # WIPO e-Filing 出願人ガイド（公式 43 頁）
-│   └── madrid-goods-services-classification-guide.pdf  # 公式の区分審査ガイド（第 5 版）
+│   ├── madrid-cnipa-bridge.md                 # CNIPA 連携章の要点（中国指定の実務）
+│   ├── madrid-workflows.md                    # エンドツーエンドの業務フロー（出願／後期指定／拒絶／更新）
+│   ├── madrid-scripts.md                      # スクリプト用法索引（引数と出力）
+│   ├── madrid-sources.md                      # 外部の権威ソースと検索経路
+│   ├── changelog.md                           # 版歴と開発規範（直近 3 版）
+│   └── madrid-file-index.md                   # 容量基準と行番号索引（スクリプト生成）
 ├── scripts/                          # 9 件：Python 7 + JSON 2
 │   ├── madrid_fee.py                 # 手数料計算（オフラインの写し。--date で発効日の改定を適用）
 │   ├── madrid_fee_data.json          # 手数料の機械可読な写し（madrid-fees.md と国ごとに整合）
@@ -293,7 +298,7 @@ madrid-trademark/
 │   ├── madrid_feecalc_live.py        # 手数料の実測（実ブラウザで公式 Fee Calculator を操作。判定用）
 │   ├── wipo_lex_fetch.py             # WIPO Lex の条約全文取得（逐語で Markdown 化）
 │   ├── madrid_dateutil.py            # 共有の日付ユーティリティ（暦月の加算 / 月末 / 閏年）
-│   └── selftest.py                   # 9 組の自己テスト（二つの整合性照合を含む）
+│   └── selftest.py                   # 16 組の自己テスト（二つの整合性照合を含む）
 └── templates/                        # 使用時に複製して用いる。原本は直接書き換えない
     ├── madrid_application_checklist.md      # MM2 提出前の逐条セルフチェック
     └── madrid_refusal_response_memo.md      # 暫定拒絶への回答メモ
@@ -319,7 +324,7 @@ madrid-trademark/
 
 著作権は **Hui Ning IP（辉宁知识产权）** に帰属します。
 
-**適用範囲について。** MIT ライセンスが及ぶのは本スキル自身のコード（`scripts/`）と文書（`SKILL.md`、各言語の README、`references/` 内のスキルが整理した内容、`templates/`）です。`references/` に原文のまま収録した WIPO Lex の公式条約テキストおよび WIPO／CNIPA の公式 PDF 2 件は、権利が発行機関に留保され、照合の便のために同梱するもので**本ライセンスの対象外**です — 利用にあたっては出所の利用条件に従ってください。
+**適用範囲について。** MIT ライセンスが及ぶのは本スキル自身のコード（`scripts/`）と文書（`SKILL.md`、各言語の README、`references/` 内のスキルが整理した内容、`templates/`）です。`references/` に原文のまま収録した WIPO Lex の公式条約テキストは、権利が発行機関に留保され、照合の便のために同梱するもので**本ライセンスの対象外**です — 利用にあたっては出所の利用条件に従ってください。
 
 本スキルを用いて得た結論は、依拠する前に指定締約国の国内法と個別の事実に照らして確認してください。実務の補助具であり、法的助言を構成するものではありません。
 
