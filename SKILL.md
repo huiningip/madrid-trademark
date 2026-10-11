@@ -6,7 +6,7 @@ description: "马德里商标国际注册（马德里体系）全流程实务技
 description_zh: "马德里商标国际注册（马德里体系）全流程实务技能，面向全球商标代理师、知识产权律师与企业法务（含中国商标代理师），以 WIPO 国际阶段程序为主体、各缔约方通用，CNIPA / 中国衔接为专章：国际注册申请、后期指定、临时驳回与异议应对、续展、变更/转让/删减/放弃/分割/合并、许可备案、规费与单独规费计算、中心攻击转化、缔约方声明与注册状态查询、MGS 商品核实、CNIPA 快速审查。"
 description_en: "End-to-end Madrid System practice skill for trademark attorneys, IP lawyers and in-house counsel worldwide, centred on the WIPO international phase and usable from any contracting party's perspective, with a dedicated CNIPA/China bridge chapter. Covers international application, subsequent designation, provisional refusal and opposition response, renewal, change/assignment/limitation/renunciation/division/merger, recordal of a license, fee and individual fee calculation, central attack transformation, declarations and status lookup, MGS check, CNIPA fast-track. Trigger terms: madrid, madrid trademark, madrid protocol, madrid system, madrid renewal, madrid refusal, madrid subsequent designation, madrid transformation, madrid assignment, madrid limitation, madrid division, madrid merger, madrid individual fee, madrid fee calculator, madrid declarations, Madrid Monitor, ROMARIN, MGS, eMadrid, international trademark."
 category: legal
-version: 3.7.4
+version: 3.7.7
 author: 辉宁知识产权
 agent_created: true
 ---
@@ -49,10 +49,10 @@ agent_created: true
 
 | 数据项 | 内置值 | 基准日 | 建议复核周期 | 核验入口 |
 | --- | --- | --- | --- | --- |
-| 成员数 / 覆盖国家地区数 | 见 @references/madrid-sources.md §二 | 2026-09-23 | 每月 | https://www.wipo.int/en/web/madrid-system/members/ |
+| 成员数 / 覆盖国家地区数 | 见 @references/madrid-sources.md §二 | 2026-10-11（沙特 2026-10-08 生效） | 每月 | https://www.wipo.int/en/web/madrid-system/members/ |
 | WIPO 官费（费用表） | 653 / 903 / 100 / 300 / 327 等 | 费用表 2023-02-01 版，2026-09-23 核验 | 每季度 | https://www.wipo.int/en/web/madrid-system/fees/sched |
-| 各缔约方单独规费 | 见 @references/madrid-fees.md | 2026-08-23 | 每月 | https://www.wipo.int/en/web/madrid-system/fees/ind_taxes |
-| 缔约方声明（18 个月驳回期、单独规费、分割/合并等） | 见 @references/madrid-declarations.md | 2026-03-15 | 每月 | https://www.wipo.int/en/web/madrid-system/members/declarations |
+| 各缔约方单独规费 | 见 @references/madrid-fees.md | 2026-10-08 | 每月 | https://www.wipo.int/en/web/madrid-system/fees/ind_taxes |
+| 缔约方声明（18 个月驳回期、单独规费、分割/合并等） | 见 @references/madrid-declarations.md | 2026-10-08（沙特已收录） | 每月 | https://www.wipo.int/en/web/madrid-system/members/declarations |
 | 答复临时驳回的期限（Rule 17(7) 表，非全覆盖） | 见 @references/madrid-declarations.md §4e-i/§4e-ii 与 `scripts/madrid_response_times.json` | 页头 2026-08-28；表内 2025-02-07 | 每月 | https://www.wipo.int/web/madrid-system/members/provisional-refusal-time-limits-to-respond |
 | CHF 汇率 | 不内置 | — | 每次缴费前 | 实时汇率 / WIPO Fee Calculator |
 | 尼斯分类版本 | NCL13-2026 | 2026-01-01 | 每年 1 月 | MGS 数据库显示版本 |
@@ -148,7 +148,6 @@ agent_created: true
 | §4.12 配套文件与关键设计要点 | @references/madrid-scripts.md | 脚本设计口径与维护规程 |
 | §5.2 反例完整版（16 条） | @references/madrid-faq.md §二 | 全部反例；控制面保留 4 条最高频 |
 | §5.4 如何提问以获得最佳回答 | @references/madrid-faq.md §六 | 提问指引 |
-| 版本历史与技能规范 | @references/changelog.md | 版本记录、治理约定与开发规范 |
 
 > 📎 **参考资料体积与行号定位**：见 @references/madrid-file-index.md（体积基准、大文件章节→行号索引）。
 
@@ -176,7 +175,6 @@ agent_created: true
 | 法律依据来源 / 官方工具入口 | §3.1、§3.5 | @references/madrid-sources.md | — | — |
 | 脚本设计口径与维护规程 | §4.12 | @references/madrid-scripts.md | — | `scripts/selftest.py` |
 | 定位参考资料 / 查大文件章节行号 | §3.9 | @references/madrid-file-index.md | — | — |
-| 版本历史与开发规范 | 文末 | @references/changelog.md | — | — |
 ### 4.1 国际注册申请流程
 
 > 本节按**缔约方通用口径**撰写。流程中的「原属局（Office of Origin）」指申请人依议定书第 2 条取得申请资格的那个缔约方主管局，**并非特指中国**。中国（CNIPA）作为原属局时的具体提交途径与材料要求见 §4.10；美国、欧盟、日本等其他原属局同理类推。
@@ -483,7 +481,7 @@ CNIPA 作为原属局的提交途径与材料、驳回理由与中国《商标�
 | 规费计算器（离线） | `scripts/madrid_fee.py` | 按官方费用表计算 WIPO 官费 + 各缔约方单独规费（支持颜色、LDC、集体商标、宽限期、后期指定、古巴第二段费），并按 `--date` 套用**已公告的费率调整**、提示跨生效日与未实测组件 | `py madrid_fee.py --countries ID,IL --classes 2 --date 2026/11/01` |
 | 期限计算器（两类期限） | `scripts/madrid_deadline.py` | ① 默认模式：按**声明**计算驳回期（基准 12 / 声明后 18 / 异议延长至 25 个月，支持后期指定自登记日起算）；② `--respond`：计算**注册人答复临时驳回**的期限（内建 WIPO Rule 17(7) 的 38 成员数据，含中国 15/30 日、法国 1 个月、美国异议 40 日等，并按 6 种起算基准判定是否可按收件日计算） | `py madrid_deadline.py --register 2026-01-15 --declared-18`<br>`py madrid_deadline.py --respond --cp CN --received 2026-09-20` |
 | 续展提醒 | `scripts/madrid_renewal.py` | 计算续展窗口（提前 6 个月、宽限期 6 个月）与宽限期附加费 | `py madrid_renewal.py --register 2016-07-01 --protection-years 10` |
-| 自检 | `scripts/selftest.py` | 16 组用例：日期边界、期限口径、**答复期限（15/30 日与 6 种起算基准）**、**答复期限数据 ↔ 声明文档一致性**、续展四阶段、规费模式、费率生效日、fees.md ↔ 数据文件一致性、CLI 冒烟；另含七项治理类校验：**版本一致性、引用存在性、孤儿文件、体积表漂移、索引行号有效性、平台结构合规、行尾纯度** | `py -B selftest.py` |
+| 自检 | `scripts/selftest.py` | 9 组用例：日期边界、期限口径、**答复期限（15/30 日与 6 种起算基准）**、**答复期限数据 ↔ 声明文档一致性**、续展四阶段、规费模式、费率生效日、fees.md ↔ 数据文件一致性、CLI 冒烟 | `py -B selftest.py` |
 | **实时规费核算** | `scripts/madrid_feecalc_live.py` | 用真实浏览器驱动 **WIPO Fee Calculator**，按「原属局 + 类别数 + 缔约方清单」取得逐国权威金额并输出基本费/单独规费/补充费/总计；支持 `--colour`、`--collective`、`--dump` 留痕 | `py madrid_feecalc_live.py --origin US --classes 1 --countries JP,ID,IL` |
 | **条约全文抓取** | `scripts/wipo_lex_fetch.py` | 从 WIPO Lex 文本页抓取条约/细则/行政规程**逐字全文**（服务端渲染，无需浏览器）：`--inspect` 先勘察结构，`--out` 落地为 Markdown，`--preserve-notes` 把旧要点保为文末附录；自动处理「整份文档内嵌于 `printID` 容器」与中文排版空格 | `py -B wipo_lex_fetch.py --url https://www.wipo.int/wipolex/en/text/384637 --inspect` |
 
@@ -570,7 +568,6 @@ CNIPA 作为原属局的提交途径与材料、驳回理由与中国《商标�
 · 缔约方声明与答复期限 → @references/madrid-declarations.md
 · 法律依据来源、成员数据口径、官方工具入口 → @references/madrid-sources.md
 · 脚本设计口径与维护规程 → @references/madrid-scripts.md
-· 版本历史与开发规范 → @references/changelog.md
 · 参考资料体积与行号定位 → @references/madrid-file-index.md
 · 作业流程细节 → 各 §4.x（控制面保留流程图与 CHECKPOINT 检查点）
 
@@ -580,11 +577,11 @@ CNIPA 作为原属局的提交途径与材料、驳回理由与中国《商标�
 · ① 交付格式与输出契约类（§六 输出格式、星标体系、禁 Markdown 表格）——以 SKILL.md 为准；
 · ② 判断规则类（流程规则、判定口径、法条与指令口径）——以 SKILL.md 各节为准，references 为展开细则；
 · ③ 事实与数据类（成员数、规费、声明、期限、缔约方声明）——以本清单指定的唯一权威源文件为唯一来源；
-· ④ 同层互斥（两个同级文件规则互斥）——取**更严格者**，并在 @references/changelog.md 登记修正，不得以「某文件为准」相互覆盖。
+· ④ 同层互斥（两个同级文件规则互斥）——取**更严格者**，不得以「某文件为准」相互覆盖。
 
 **横向与纵向须区分（防误读）**：同一纵向链（依次展开、逐层细化）的文件**不属「同层互斥」**。本技能的纵向链为「**SKILL.md 各节 ＞ references 展开文件 ＞ `templates/` 模板**」，故「模板以契约为准」「展开文件以 SKILL.md 为准」与本条并不冲突。
 
-**平台元数据边界（不得越权）**：`_meta.json` / `_user_meta.json` 由平台在**发布／导入时写入**，技能**不得手工创建**——手工创建会写入**伪造的 ownerId 与发布时间戳**。本技能不设、亦不应新增任何"由平台管理的元数据文件"；版本与开发规范的唯一权威源为 @references/changelog.md（见其 §三）。
+**平台元数据边界（不得越权）**：`_meta.json` / `_user_meta.json` 由平台在**发布／导入时写入**，技能**不得手工创建**——手工创建会写入**伪造的 ownerId 与发布时间戳**。本技能不设、亦不应新增任何"由平台管理的元数据文件"；版本以 `SKILL.md` frontmatter 的 `version:` 字段为单一真源。
 
 ### 5.4 能力边界与最佳提问指引
 
@@ -620,5 +617,4 @@ CNIPA 作为原属局的提交途径与材料、驳回理由与中国《商标�
 
 ---
 
-> **版本**：v3.7.4
-> **版本历史（仅最近 3 版）、技能规范与治理约定**：见 @references/changelog.md；**更早版本已移出技能包归档**（路径见该文件头）
+> **版本**：v3.7.7（2026-10-11）
