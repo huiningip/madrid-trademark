@@ -11,7 +11,7 @@
 
 [![selftest](https://github.com/huiningip/madrid-trademark/actions/workflows/selftest.yml/badge.svg)](https://github.com/huiningip/madrid-trademark/actions/workflows/selftest.yml)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-3.7.4-blue.svg)](https://github.com/huiningip/madrid-trademark)
+[![Version](https://img.shields.io/badge/version-3.7.7-blue.svg)](https://github.com/huiningip/madrid-trademark)
 [![Agent-Agnostic](https://img.shields.io/badge/Agent-Agnostic-blueviolet)](#インストール)
 [![Madrid Members](https://img.shields.io/badge/Madrid%20Members-117%20%C2%B7%20133%20countries-green)](https://www.wipo.int/en/web/madrid-system/members/)
 ![Office-Neutral](https://img.shields.io/badge/Perspective-Office--Neutral-orange)
@@ -70,7 +70,7 @@ npx skills add huiningip/madrid-trademark
 git clone https://github.com/huiningip/madrid-trademark ~/.workbuddy/skills/madrid-trademark
 ```
 
-> **導入後に自己点検を。** これは `SKILL.md` 一枚だけのスキルではありません。`references/`（Markdown 19 件）、`scripts/`（Python 7 本 + JSON データ 2 件）、`templates/`（テンプレート 2 件）はいずれも本文から `@` の相対パスで参照される実体で、一つ欠ければ参照が切れます。
+> **導入後に自己点検を。** これは `SKILL.md` 一枚だけのスキルではありません。`references/`（Markdown 18 件）、`scripts/`（Python 7 本 + JSON データ 2 件）、`templates/`（テンプレート 2 件）はいずれも本文から `@` の相対パスで参照される実体で、一つ欠ければ参照が切れます。
 >
 > 導入先のディレクトリを見てください。`SKILL.md` しかなくサブディレクトリが無ければ、同期ツールが単一ファイルだけを取得しています。上記の `git clone` で入れ直してください。
 >
@@ -273,7 +273,7 @@ madrid-trademark/
 ├── README.ru.md                      # Русский
 ├── LICENSE                           # MIT ライセンス
 ├── logo.png                          # 会社のロゴ（README の最初に表示）
-├── references/                       # Markdown 19 件
+├── references/                       # Markdown 18 件
 │   ├── madrid-agreement.md / -en.md           # マドリッド協定（18 条、中西全文）
 │   ├── madrid-protocol.md / -en.md            # マドリッドプロトコル（16 条 + 10 細則、中西全文）
 │   ├── madrid-regulations.md / -en.md         # 実施細則（41 規則 + 公式脚注、中西全文）
@@ -287,7 +287,6 @@ madrid-trademark/
 │   ├── madrid-workflows.md                    # エンドツーエンドの業務フロー（出願／後期指定／拒絶／更新）
 │   ├── madrid-scripts.md                      # スクリプト用法索引（引数と出力）
 │   ├── madrid-sources.md                      # 外部の権威ソースと検索経路
-│   ├── changelog.md                           # 版歴と開発規範（直近 3 版）
 │   └── madrid-file-index.md                   # 容量基準と行番号索引（スクリプト生成）
 ├── scripts/                          # 9 件：Python 7 + JSON 2
 │   ├── madrid_fee.py                 # 手数料計算（オフラインの写し。--date で発効日の改定を適用）

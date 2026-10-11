@@ -11,7 +11,7 @@
 
 [![selftest](https://github.com/huiningip/madrid-trademark/actions/workflows/selftest.yml/badge.svg)](https://github.com/huiningip/madrid-trademark/actions/workflows/selftest.yml)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-3.7.4-blue.svg)](https://github.com/huiningip/madrid-trademark)
+[![Version](https://img.shields.io/badge/version-3.7.7-blue.svg)](https://github.com/huiningip/madrid-trademark)
 [![Agent-Agnostic](https://img.shields.io/badge/Agent-Agnostic-blueviolet)](#install)
 [![Madrid Members](https://img.shields.io/badge/Madrid%20Members-117%20%C2%B7%20133%20countries-green)](https://www.wipo.int/en/web/madrid-system/members/)
 ![Office-Neutral](https://img.shields.io/badge/Perspective-Office--Neutral-orange)
@@ -71,7 +71,7 @@ npx skills add huiningip/madrid-trademark
 git clone https://github.com/huiningip/madrid-trademark ~/.workbuddy/skills/madrid-trademark
 ```
 
-> **Self-check first.** This is not a single-file skill. `references/` (19 Markdown files), `scripts/` (7 Python scripts + 2 JSON data files) and `templates/` (2 templates) are all referenced from the main text by `@` relative paths — miss one and the chain breaks.
+> **Self-check first.** This is not a single-file skill. `references/` (18 Markdown files), `scripts/` (7 Python scripts + 2 JSON data files) and `templates/` (2 templates) are all referenced from the main text by `@` relative paths — miss one and the chain breaks.
 >
 > After installing, look at the install directory. If only `SKILL.md` is there and the subdirectories are missing, your sync tool grabbed a single file — reinstall with `git clone` above.
 >
@@ -274,7 +274,7 @@ madrid-trademark/
 ├── README.ru.md                      # Russian
 ├── LICENSE                           # MIT License
 ├── logo.png                          # Brand mark (README header)
-├── references/                       # 19 Markdown files
+├── references/                       # 18 Markdown files
 │   ├── madrid-agreement.md / -en.md           # Madrid Agreement (18 Articles, full text zh/en)
 │   ├── madrid-protocol.md / -en.md            # Madrid Protocol (16 Articles + 10 sub-rules, full text zh/en)
 │   ├── madrid-regulations.md / -en.md         # Regulations (41 Rules + official footnotes, full text zh/en)
@@ -288,7 +288,6 @@ madrid-trademark/
 │   ├── madrid-workflows.md                    # End-to-end workflows (filing / subsequent designation / refusal / renewal)
 │   ├── madrid-scripts.md                      # Script usage index (parameters and output)
 │   ├── madrid-sources.md                      # External authoritative sources and lookup paths
-│   ├── changelog.md                           # Version history and development conventions (last 3)
 │   └── madrid-file-index.md                   # Size baseline and line-number index (script-generated)
 ├── scripts/                          # 9 items: 7 Python + 2 JSON
 │   ├── madrid_fee.py                 # Fee calculator (offline snapshot, --date applies effective-date changes)

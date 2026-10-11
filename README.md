@@ -11,7 +11,7 @@
 
 [![selftest](https://github.com/huiningip/madrid-trademark/actions/workflows/selftest.yml/badge.svg)](https://github.com/huiningip/madrid-trademark/actions/workflows/selftest.yml)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-3.7.4-blue.svg)](https://github.com/huiningip/madrid-trademark)
+[![Version](https://img.shields.io/badge/version-3.7.7-blue.svg)](https://github.com/huiningip/madrid-trademark)
 [![Agent-Agnostic](https://img.shields.io/badge/Agent-Agnostic-blueviolet)](#装上就能用)
 [![Madrid Members](https://img.shields.io/badge/Madrid%20Members-117%20%C2%B7%20133%20countries-green)](https://www.wipo.int/en/web/madrid-system/members/)
 ![Office-Neutral](https://img.shields.io/badge/Perspective-Office--Neutral-orange)
@@ -70,7 +70,7 @@ npx skills add huiningip/madrid-trademark
 git clone https://github.com/huiningip/madrid-trademark ~/.workbuddy/skills/madrid-trademark
 ```
 
-> **装完先自检**：这不是一个只有 `SKILL.md` 的技能。`references/`（19 份 Markdown）、`scripts/`（7 个 Python 脚本 + 2 份 JSON 数据）、`templates/`（2 份模板）都是被正文以 `@` 相对路径引用的实体，缺一即会断链。
+> **装完先自检**：这不是一个只有 `SKILL.md` 的技能。`references/`（18 份 Markdown）、`scripts/`（7 个 Python 脚本 + 2 份 JSON 数据）、`templates/`（2 份模板）都是被正文以 `@` 相对路径引用的实体，缺一即会断链。
 >
 > 装完看一眼安装目录：若只有 `SKILL.md`、没有那几个子目录，说明同步工具只抓了单文件——改用上面的 `git clone` 重新装一次即可。
 >
@@ -273,7 +273,7 @@ madrid-trademark/
 ├── README.ru.md                      # Русский
 ├── LICENSE                           # MIT 许可证
 ├── logo.png                          # 品牌标识（README 首屏）
-├── references/                       # 19 份 Markdown
+├── references/                       # 18 份 Markdown
 │   ├── madrid-agreement.md / -en.md           # 马德里协定（18 条，中英全文）
 │   ├── madrid-protocol.md / -en.md            # 马德里议定书（16 条 + 10 分条，中英全文）
 │   ├── madrid-regulations.md / -en.md         # 实施细则（41 条 + 官方脚注，中英全文）
@@ -287,7 +287,6 @@ madrid-trademark/
 │   ├── madrid-workflows.md                    # 端到端作业流程（申请/后期指定/驳回/续展）
 │   ├── madrid-scripts.md                      # 脚本用法索引（参数与输出）
 │   ├── madrid-sources.md                      # 外部权威源与检索路径清单
-│   ├── changelog.md                           # 版本历史与开发规范（近 3 版）
 │   └── madrid-file-index.md                   # 体积基准与行号定位索引（脚本生成）
 ├── scripts/                          # 9 个：7 Python + 2 JSON
 │   ├── madrid_fee.py                 # 规费计算器（离线快照，支持 --date 生效日调整）

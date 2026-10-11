@@ -11,7 +11,7 @@
 
 [![selftest](https://github.com/huiningip/madrid-trademark/actions/workflows/selftest.yml/badge.svg)](https://github.com/huiningip/madrid-trademark/actions/workflows/selftest.yml)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-3.7.4-blue.svg)](https://github.com/huiningip/madrid-trademark)
+[![Version](https://img.shields.io/badge/version-3.7.7-blue.svg)](https://github.com/huiningip/madrid-trademark)
 [![Agent-Agnostic](https://img.shields.io/badge/Agent-Agnostic-blueviolet)](#установка)
 [![Madrid Members](https://img.shields.io/badge/Madrid%20Members-117%20%C2%B7%20133%20countries-green)](https://www.wipo.int/en/web/madrid-system/members/)
 ![Office-Neutral](https://img.shields.io/badge/Perspective-Office--Neutral-orange)
@@ -71,7 +71,7 @@ npx skills add huiningip/madrid-trademark
 git clone https://github.com/huiningip/madrid-trademark ~/.workbuddy/skills/madrid-trademark
 ```
 
-> **Проверьте после установки.** Это не навык из одного `SKILL.md`. `references/` (19 файлов Markdown), `scripts/` (7 скриптов Python + 2 файла JSON с данными) и `templates/` (2 шаблона) — это сущности, на которые основной текст ссылается относительными путями `@`; отсутствие любой из них разрывает цепочку.
+> **Проверьте после установки.** Это не навык из одного `SKILL.md`. `references/` (18 файлов Markdown), `scripts/` (7 скриптов Python + 2 файла JSON с данными) и `templates/` (2 шаблона) — это сущности, на которые основной текст ссылается относительными путями `@`; отсутствие любой из них разрывает цепочку.
 >
 > Посмотрите каталог установки: если там только `SKILL.md` и нет подкаталогов, значит инструмент синхронизации забрал лишь один файл — переустановите через `git clone` выше.
 >
@@ -274,7 +274,7 @@ madrid-trademark/
 ├── README.ru.md                      # Русский (этот файл)
 ├── LICENSE                           # Лицензия MIT
 ├── logo.png                          # Знак компании (в начале README)
-├── references/                       # 19 файлов Markdown
+├── references/                       # 18 файлов Markdown
 │   ├── madrid-agreement.md / -en.md           # Мадридское соглашение (18 статей, полный текст zh/en)
 │   ├── madrid-protocol.md / -en.md            # Протокол (16 статей + 10 подправил, zh/en)
 │   ├── madrid-regulations.md / -en.md         # Инструкция (41 правило + официальные сноски, zh/en)
@@ -288,7 +288,6 @@ madrid-trademark/
 │   ├── madrid-workflows.md                    # Сквозные рабочие процессы (заявка / последующее указание / отказ / продление)
 │   ├── madrid-scripts.md                      # Указатель по скриптам (параметры и вывод)
 │   ├── madrid-sources.md                      # Внешние авторитетные источники и пути поиска
-│   ├── changelog.md                           # История версий и правила разработки (последние 3)
 │   └── madrid-file-index.md                   # Базовые размеры и индекс строк (генерируется скриптом)
 ├── scripts/                          # 9 элементов: 7 Python + 2 JSON
 │   ├── madrid_fee.py                 # Калькулятор пошлин (офлайн-снимок; --date применяет вступившие в силу тарифы)

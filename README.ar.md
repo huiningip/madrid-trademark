@@ -11,7 +11,7 @@
 
 [![selftest](https://github.com/huiningip/madrid-trademark/actions/workflows/selftest.yml/badge.svg)](https://github.com/huiningip/madrid-trademark/actions/workflows/selftest.yml)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-3.7.4-blue.svg)](https://github.com/huiningip/madrid-trademark)
+[![Version](https://img.shields.io/badge/version-3.7.7-blue.svg)](https://github.com/huiningip/madrid-trademark)
 [![Agent-Agnostic](https://img.shields.io/badge/Agent-Agnostic-blueviolet)](#التثبيت)
 [![Madrid Members](https://img.shields.io/badge/Madrid%20Members-117%20%C2%B7%20133%20countries-green)](https://www.wipo.int/en/web/madrid-system/members/)
 ![Office-Neutral](https://img.shields.io/badge/Perspective-Office--Neutral-orange)
@@ -67,7 +67,7 @@ npx skills add huiningip/madrid-trademark
 git clone https://github.com/huiningip/madrid-trademark ~/.workbuddy/skills/madrid-trademark
 ```
 
-> **تحقّق بعد التثبيت.** هذه ليست مهارة مكوّنة من `SKILL.md` وحده. فـ`references/` (١٩ ملف Markdown) و`scripts/` (٧ نصوص Python + ملفّا JSON للبيانات) و`templates/` (قالبان) كيانات يشير إليها متن المهارة بمسارات نسبية عبر `@`؛ ويكفي فقدان أحدها لانقطاع السلسلة.
+> **تحقّق بعد التثبيت.** هذه ليست مهارة مكوّنة من `SKILL.md` وحده. فـ`references/` (١٨ ملف Markdown) و`scripts/` (٧ نصوص Python + ملفّا JSON للبيانات) و`templates/` (قالبان) كيانات يشير إليها متن المهارة بمسارات نسبية عبر `@`؛ ويكفي فقدان أحدها لانقطاع السلسلة.
 >
 > انظر في مجلّد التثبيت: إن وجدت `SKILL.md` وحده دون المجلّدات الفرعية، فأداة المزامنة جلبت ملفًّا واحدًا فقط — أعد التثبيت عبر `git clone` أعلاه.
 >
@@ -270,7 +270,7 @@ madrid-trademark/
 ├── README.ru.md                      # Русский
 ├── LICENSE                           # رخصة MIT
 ├── logo.png                          # شعار الشركة (أعلى ملف README)
-├── references/                       # ١٩ ملف Markdown
+├── references/                       # ١٨ ملف Markdown
 │   ├── madrid-agreement.md / -en.md           # اتفاق مدريد (١٨ مادة، نص كامل zh/en)
 │   ├── madrid-protocol.md / -en.md            # بروتوكول مدريد (١٦ مادة + ١٠ قواعد فرعية، zh/en)
 │   ├── madrid-regulations.md / -en.md         # اللائحة التنفيذية (٤١ قاعدة + حواشٍ رسمية، zh/en)
@@ -284,7 +284,6 @@ madrid-trademark/
 │   ├── madrid-workflows.md                    # مسارات العمل الكاملة (الإيداع / التحديد اللاحق / الرفض / التجديد)
 │   ├── madrid-scripts.md                      # دليل استخدام النصوص البرمجية (المعاملات والمخرجات)
 │   ├── madrid-sources.md                      # المصادر الخارجية الموثوقة ومسارات البحث
-│   ├── changelog.md                           # سجل الإصدارات وقواعد التطوير (آخر ٣ إصدارات)
 │   └── madrid-file-index.md                   # أساس الأحجام وفهرس الأسطر (مُولَّد آليًّا)
 ├── scripts/                          # ٩ عناصر: ٧ Python + ملفّا JSON
 │   ├── madrid_fee.py                 # حاسبة الرسوم (لقطة دون اتصال؛ و`--date` يطبّق التعديلات السارية)

@@ -11,7 +11,7 @@
 
 [![selftest](https://github.com/huiningip/madrid-trademark/actions/workflows/selftest.yml/badge.svg)](https://github.com/huiningip/madrid-trademark/actions/workflows/selftest.yml)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-3.7.4-blue.svg)](https://github.com/huiningip/madrid-trademark)
+[![Version](https://img.shields.io/badge/version-3.7.7-blue.svg)](https://github.com/huiningip/madrid-trademark)
 [![Agent-Agnostic](https://img.shields.io/badge/Agent-Agnostic-blueviolet)](#instalación)
 [![Madrid Members](https://img.shields.io/badge/Madrid%20Members-117%20%C2%B7%20133%20countries-green)](https://www.wipo.int/en/web/madrid-system/members/)
 ![Office-Neutral](https://img.shields.io/badge/Perspective-Office--Neutral-orange)
@@ -71,7 +71,7 @@ npx skills add huiningip/madrid-trademark
 git clone https://github.com/huiningip/madrid-trademark ~/.workbuddy/skills/madrid-trademark
 ```
 
-> **Compruebe tras instalar**: no es una habilidad reducida a `SKILL.md`. `references/` (19 archivos Markdown), `scripts/` (7 scripts Python + 2 archivos JSON de datos) y `templates/` (2 plantillas) son entidades referenciadas en el cuerpo del texto mediante rutas relativas `@`; basta con que falte una para romper la cadena.
+> **Compruebe tras instalar**: no es una habilidad reducida a `SKILL.md`. `references/` (18 archivos Markdown), `scripts/` (7 scripts Python + 2 archivos JSON de datos) y `templates/` (2 plantillas) son entidades referenciadas en el cuerpo del texto mediante rutas relativas `@`; basta con que falte una para romper la cadena.
 >
 > Tras instalar, revise el directorio: si solo aparece `SKILL.md` y faltan los subdirectorios, su herramienta de sincronización capturó un solo archivo — reinstale con `git clone` como arriba.
 >
@@ -274,7 +274,7 @@ madrid-trademark/
 ├── README.ru.md                      # Русский
 ├── LICENSE                           # Licencia MIT
 ├── logo.png                          # Marca de la empresa (cabecera del README)
-├── references/                       # 19 archivos Markdown
+├── references/                       # 18 archivos Markdown
 │   ├── madrid-agreement.md / -en.md           # Arreglo de Madrid (18 artículos, texto íntegro zh/en)
 │   ├── madrid-protocol.md / -en.md            # Protocolo de Madrid (16 artículos + 10 subreglas, zh/en)
 │   ├── madrid-regulations.md / -en.md         # Reglamento (41 reglas + notas oficiales, zh/en)
@@ -288,7 +288,6 @@ madrid-trademark/
 │   ├── madrid-workflows.md                    # Flujos de trabajo completos (solicitud / designación posterior / denegación / renovación)
 │   ├── madrid-scripts.md                      # Índice de uso de los scripts (parámetros y salida)
 │   ├── madrid-sources.md                      # Fuentes externas autorizadas y rutas de búsqueda
-│   ├── changelog.md                           # Historial de versiones y normas de desarrollo (últimas 3)
 │   └── madrid-file-index.md                   # Base de tamaños e índice de líneas (generado por script)
 ├── scripts/                          # 9 elementos: 7 Python + 2 JSON
 │   ├── madrid_fee.py                 # Calculadora de tasas (instantánea sin conexión; --date aplica las entradas en vigor)

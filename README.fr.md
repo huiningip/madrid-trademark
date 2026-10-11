@@ -11,7 +11,7 @@
 
 [![selftest](https://github.com/huiningip/madrid-trademark/actions/workflows/selftest.yml/badge.svg)](https://github.com/huiningip/madrid-trademark/actions/workflows/selftest.yml)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-3.7.4-blue.svg)](https://github.com/huiningip/madrid-trademark)
+[![Version](https://img.shields.io/badge/version-3.7.7-blue.svg)](https://github.com/huiningip/madrid-trademark)
 [![Agent-Agnostic](https://img.shields.io/badge/Agent-Agnostic-blueviolet)](#installation)
 [![Madrid Members](https://img.shields.io/badge/Madrid%20Members-117%20%C2%B7%20133%20countries-green)](https://www.wipo.int/en/web/madrid-system/members/)
 ![Office-Neutral](https://img.shields.io/badge/Perspective-Office--Neutral-orange)
@@ -71,7 +71,7 @@ npx skills add huiningip/madrid-trademark
 git clone https://github.com/huiningip/madrid-trademark ~/.workbuddy/skills/madrid-trademark
 ```
 
-> **Vérifiez après installation** : ce n'est pas une compétence réduite au seul `SKILL.md`. `references/` (19 fichiers Markdown), `scripts/` (7 scripts Python + 2 fichiers JSON de données) et `templates/` (2 modèles) sont des entités référencées dans le corps du texte par des chemins relatifs `@` ; en manquer une suffit à rompre la chaîne.
+> **Vérifiez après installation** : ce n'est pas une compétence réduite au seul `SKILL.md`. `references/` (18 fichiers Markdown), `scripts/` (7 scripts Python + 2 fichiers JSON de données) et `templates/` (2 modèles) sont des entités référencées dans le corps du texte par des chemins relatifs `@` ; en manquer une suffit à rompre la chaîne.
 >
 > Après installation, inspectez le répertoire : si seul `SKILL.md` est présent et que les sous-répertoires manquent, votre outil de synchronisation n'a récupéré qu'un fichier — réinstallez avec `git clone` ci-dessus.
 >
@@ -274,7 +274,7 @@ madrid-trademark/
 ├── README.ru.md                      # Русский
 ├── LICENSE                           # Licence MIT
 ├── logo.png                          # Marque de l'entreprise (en-tête du README)
-├── references/                       # 19 fichiers Markdown
+├── references/                       # 18 fichiers Markdown
 │   ├── madrid-agreement.md / -en.md           # Arrangement de Madrid (18 articles, texte intégral zh/en)
 │   ├── madrid-protocol.md / -en.md            # Protocole de Madrid (16 articles + 10 sous-règles, zh/en)
 │   ├── madrid-regulations.md / -en.md         # Règlement d'exécution (41 règles + notes officielles, zh/en)
@@ -288,7 +288,6 @@ madrid-trademark/
 │   ├── madrid-workflows.md                    # Flux de travail complets (dépôt / désignation postérieure / refus / renouvellement)
 │   ├── madrid-scripts.md                      # Index d'usage des scripts (paramètres et sortie)
 │   ├── madrid-sources.md                      # Sources externes faisant autorité et chemins de recherche
-│   ├── changelog.md                           # Historique des versions et règles de développement (3 dernières)
 │   └── madrid-file-index.md                   # Base de tailles et index de lignes (généré par script)
 ├── scripts/                          # 9 éléments : 7 Python + 2 JSON
 │   ├── madrid_fee.py                 # Calculateur de taxes (instantané hors ligne, --date applique les entrées en vigueur)
