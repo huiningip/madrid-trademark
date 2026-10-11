@@ -1,10 +1,10 @@
 # 马德里体系缔约方声明与通知速查
 
-> **来源**：WIPO 官方页面 https://www.wipo.int/en/web/madrid-system/members/declarations （2026-03-15 核验）；答复期限数据另取 WIPO《Time Limits to Respond to Notifications of Provisional Refusal》（Rule 17(7) 汇总表）https://www.wipo.int/web/madrid-system/members/provisional-refusal-time-limits-to-respond （2026-08-28 更新，2026-09-25 核验）
-> **最后更新**：2026年9月25日
+> **来源**：WIPO 官方页面 https://www.wipo.int/en/web/madrid-system/members/declarations （页面 Last update **2026-10-08**，2026-10-11 核验）；答复期限数据另取 WIPO《Time Limits to Respond to Notifications of Provisional Refusal》（Rule 17(7) 汇总表）https://www.wipo.int/web/madrid-system/members/provisional-refusal-time-limits-to-respond （2026-08-28 更新，2026-09-25 核验）
+> **最后更新**：2026年10月11日
 > **法律依据**：马德里议定书及实施细则
 > **用途**：各缔约方可作出特定声明以确保马德里体系与其国内法律相适应。指定国时需核对这些声明。
-> **临近变更提醒（时效）**：沙特阿拉伯已于 2026-07-23 公布加入，《马德里议定书》对其生效日为 **2026-10-08**。WIPO 成员页（2026-09-23 核验）已显示 117 个成员 / 133 个国家地区；生效日之前实际可指定口径仍为 116 / 132。**本表尚未收录沙特的相关声明**，生效后须复核 WIPO 声明页并同步更新本表（时效清单见 SKILL.md §3.0）。
+> **沙特阿拉伯已生效（2026-10-08）**：WIPO 声明页（页面 Last update 2026-10-08）已在各声明类别中收录沙特。据 2026-10-11 核验，沙特共作出 **5 项声明**：**Rule 27bis(6)**（分割不适用）、**Rule 27ter(2)(b)**（合并不适用）、**Art.8(7)(a)**（单独规费适用，1,397 CHF/类；集体/证明商标 1,719 CHF/类）、**Art.5(2)(b)**（驳回期延长至 18 个月）、**Art.5(2)(c)**（异议后延长）；未见于 Rule 20bis、Rule 40(6)、Rule 17(5)(e)、Rule 34(2)(b) 等类别的列表中。**本表其余类别数据基准仍为 2026-03-15 页面快照**，全量逐国复核列入下次月度核验（时效清单见 SKILL.md §3.0）。
 
 ## 概述
 

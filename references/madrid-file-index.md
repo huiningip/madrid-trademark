@@ -15,23 +15,22 @@
 <!-- SIZE_TABLE_START -->
 | 文件 | 字节 | 行数 |
 | --- | --- | --- |
-| `changelog.md` | 9306 | 93 |
 | `madrid-admin-instructions-en.md` | 11598 | 279 |
 | `madrid-admin-instructions.md` | 16302 | 370 |
 | `madrid-agreement-en.md` | 46715 | 383 |
 | `madrid-agreement.md` | 51712 | 796 |
 | `madrid-cnipa-bridge.md` | 4590 | 63 |
-| `madrid-declarations.md` | 28505 | 373 |
+| `madrid-declarations.md` | 28819 | 373 |
 | `madrid-faq.md` | 13561 | 125 |
 | `madrid-fast-track-examination-cnipa.md` | 5502 | 111 |
-| `madrid-fees.md` | 16992 | 234 |
+| `madrid-fees.md` | 17210 | 235 |
 | `madrid-goods-services-classification.md` | 26236 | 291 |
 | `madrid-protocol-en.md` | 55233 | 478 |
 | `madrid-protocol.md` | 55500 | 855 |
 | `madrid-regulations-en.md` | 158986 | 1309 |
 | `madrid-regulations.md` | 156614 | 2133 |
 | `madrid-scripts.md` | 5109 | 45 |
-| `madrid-sources.md` | 8151 | 57 |
+| `madrid-sources.md` | 8233 | 57 |
 | `madrid-workflows.md` | 7757 | 61 |
 <!-- SIZE_TABLE_END -->
 
