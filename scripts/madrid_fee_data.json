@@ -1,8 +1,8 @@
 {
   "meta": {
-    "reference_date": "2026-09-23",
+    "reference_date": "2026-10-11",
     "fee_schedule_version": "2023-02-01",
-    "individual_fees_last_update": "2026-08-23",
+    "individual_fees_last_update": "2026-10-08",
     "currency": "CHF",
     "sources": {
       "schedule_of_fees": "https://www.wipo.int/en/web/madrid-system/fees/sched",
@@ -455,6 +455,15 @@
       "name_zh": "萨摩亚",
       "application": { "mode": "per_class", "amount": 146 },
       "renewal": { "mode": "per_class", "amount": 146 }
+    },
+    "SA": {
+      "name_zh": "沙特阿拉伯",
+      "application": { "mode": "per_class", "amount": 1397 },
+      "renewal": { "mode": "per_class", "amount": 1397 },
+      "renewal_grace": { "mode": "per_class", "amount": 1612 },
+      "collective": {
+        "application": { "mode": "per_class", "amount": 1719 }
+      }
     },
     "SM": {
       "name_zh": "圣马力诺",

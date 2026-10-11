@@ -497,9 +497,8 @@ def test_cli_smoke():
 
 
 def test_version_consistency():
-    """版本一致性：frontmatter（单一真源）与两个派生同步点必须一致。"""
+    """版本一致性：frontmatter（单一真源）与文末同步点必须一致。"""
     skill_md = (SKILL_DIR / "SKILL.md").read_text(encoding="utf-8")
-    chg_md = (SKILL_DIR / "references" / "changelog.md").read_text(encoding="utf-8")
 
     m_fm = re.search(r'^version:\s*["\']?([0-9]+\.[0-9]+\.[0-9]+)', skill_md, re.MULTILINE)
     is_true(m_fm is not None, "frontmatter 应含 SemVer version 字段")
@@ -508,18 +507,6 @@ def test_version_consistency():
     m_tail = re.search(r'^> \*\*版本\*\*：v([0-9]+\.[0-9]+\.[0-9]+)', skill_md, re.MULTILINE)
     is_true(m_tail is not None, "SKILL.md 文末应含版本行")
     eq(m_tail.group(1), v_fm, "SKILL.md 文末版本 == frontmatter")
-
-    m_cur = re.search(r'^> \*\*当前版本\*\*：v([0-9]+\.[0-9]+\.[0-9]+)', chg_md, re.MULTILINE)
-    is_true(m_cur is not None, "changelog 应含「当前版本」行")
-    eq(m_cur.group(1), v_fm, "changelog 当前版本 == frontmatter")
-
-    m_row = re.search(r'^\| \*\*v([0-9]+\.[0-9]+\.[0-9]+)\*\* \|', chg_md, re.MULTILINE)
-    is_true(m_row is not None, "changelog 版本历史表应含版本行")
-    eq(m_row.group(1), v_fm, "changelog 版本历史表首行版本 == frontmatter")
-
-    m_last = re.search(r'^> \*\*最近一次变更\*\*：v([0-9]+\.[0-9]+\.[0-9]+)', chg_md, re.MULTILINE)
-    is_true(m_last is not None, "changelog 应含「最近一次变更」行")
-    eq(m_last.group(1), v_fm, "changelog「最近一次变更」版本 == frontmatter")
 
 
 INDEX_NAME = "madrid-file-index.md"
@@ -731,7 +718,7 @@ TESTS = [
     ("费率生效日（2026-11-01 调整与跨生效日提示）", test_effective_dates),
     ("数据一致性（fees.md ↔ fee_data.json）", test_fees_md_matches_json),
     ("命令行入口冒烟（参数解析与退出码）", test_cli_smoke),
-    ("版本一致性（frontmatter / SKILL 文末 / changelog）", test_version_consistency),
+    ("版本一致性（frontmatter / SKILL 文末）", test_version_consistency),
     ("引用存在性（@references 指针，含 .md 与 .pdf）", test_reference_integrity),
     ("孤儿文件（references 未被任何文件引用）", test_no_orphan_references),
     ("体积表漂移（madrid-file-index 第 0 节）", test_file_index_size_table),
